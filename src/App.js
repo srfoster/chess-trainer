@@ -15,12 +15,25 @@ const ROWS  = [
 ]
 
 function clarifySounds(square) {
-  return square.replace(/(\d)/, "-$1")
+  return square.replace(/(\d)/, ",$1")
 }
 
 function randomSquare() {
   return COLS[Math.floor(Math.random() * COLS.length)] + ROWS[Math.floor(Math.random() * ROWS.length)]
 }
+
+let count = -1
+function tester(sequence) {
+  return function ()
+  {
+    return sequence[(count++) % sequence.length]
+  }
+  //return ["a1", "h1"][count++ % 2]
+}
+
+//https://www.chess.com/games/view/15776247
+//1. e4 e6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Nd7 5. Nf3 Ngf6 6. Bg5 Be7 7. Nxf6+ Nxf6 8. Bd3 O-O 9. Qe2 c6 10. O-O-O Qc7 11. h4 b6 12. Ne5 Bb7 13. Rh3 Rad8 14. Rg3 Kh8 15. Bxf6 Bxf6 16. Qh5 h6 17. Rg6 fxg6 18. Qxg6 1-0
+let fischerVkurz =  tester(['e4', 'e6', 'd4', 'd5', 'c3', 'e4', 'e4', 'd7', 'f3', 'f6', 'g5', 'e7', 'f6', 'f6', 'd3', 'e2', 'c6', 'c7', 'h4', 'b6', 'e5', 'b7', 'h3', 'd8', 'g3', 'h8', 'f6', 'f6', 'h5', 'h6', 'g6', 'g6', 'g6'])
 
 function App() {
   return (
@@ -28,7 +41,7 @@ function App() {
       <h1>
         Welcome to Stephen R. Foster's Chess Trainers apps
       </h1>
-      <AuditoryTrainer />
+      <AuditoryTrainer generator={ fischerVkurz } />
     </Container>
   );
 }
@@ -37,9 +50,10 @@ function App() {
 //TODO: These should not be out here.  Use refs.
 let utterance = new SpeechSynthesisUtterance()
 let timeout
-function AuditoryTrainer() {
+function AuditoryTrainer({ generator}) {
   let [rate, setRate] = React.useState(2)
-  let [square, setSquare] = React.useState(randomSquare())
+  let [square, setSquare] = React.useState()
+  let [lastSquareChange, setLastSquareChange] = React.useState()
 
   const handleChange = (event, newValue) => {
     console.log(event)
@@ -48,18 +62,20 @@ function AuditoryTrainer() {
 
   React.useEffect(() => {
     //Speak the current one
+    if(square === undefined) return
     utterance.text = clarifySounds(square)
     utterance.lang = 'en-US'
     utterance.voice = window.speechSynthesis.getVoices()[0]
     utterance.rate = 2
     window.speechSynthesis.speak(utterance)
-  }, [square]);
+  }, [lastSquareChange]);
 
   React.useEffect(() => {
     //Set a timeout to chang the square
     if(timeout) clearInterval(timeout)
     timeout = setInterval(() => {
-      setSquare(randomSquare())
+      setSquare(generator())
+      setLastSquareChange(new Date())
     }, rate*1000);
     return () => clearInterval(timeout);
   }, [rate]);
