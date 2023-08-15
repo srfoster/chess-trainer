@@ -41,7 +41,11 @@ function App() {
       <h1>
         Welcome to Stephen R. Foster's Chess Trainers apps
       </h1>
-      <AuditoryTrainer generator={ fischerVkurz } />
+      <AuditoryTrainer generators={
+        [
+          { name: "random", func: randomSquare },
+          { name: "fischer vs kurz", func: fischerVkurz },
+        ]} />
     </Container>
   );
 }
@@ -50,10 +54,13 @@ function App() {
 //TODO: These should not be out here.  Use refs.
 let utterance = new SpeechSynthesisUtterance()
 let timeout
-function AuditoryTrainer({ generator}) {
+function AuditoryTrainer({ generators}) {
+  let [generatorIndex, setGeneratorIndex] = React.useState(0)
   let [rate, setRate] = React.useState(2)
   let [square, setSquare] = React.useState()
   let [lastSquareChange, setLastSquareChange] = React.useState()
+
+  let generator = generators[generatorIndex].func
 
   const handleChange = (event, newValue) => {
     console.log(event)
@@ -74,15 +81,19 @@ function AuditoryTrainer({ generator}) {
     //Set a timeout to chang the square
     if(timeout) clearInterval(timeout)
     timeout = setInterval(() => {
+      if(generator === undefined) return
       setSquare(generator())
       setLastSquareChange(new Date())
     }, rate*1000);
     return () => clearInterval(timeout);
-  }, [rate]);
+  }, [rate, generator]);
 
   return (
     <>
       <p>Auditory Trainer, every {rate} seconds</p>
+      <select onChange={(e) => setGeneratorIndex(generators.findIndex(g => g.name === e.target.value))}>
+        {generators.map(g => <option key={g.name} value={g.name}>{g.name}</option>)}
+      </select>
       <p>Current Square: {square}</p>
       <Slider value={rate} onChange={handleChange}
         valueLabelDisplay='off'
