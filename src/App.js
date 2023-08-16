@@ -49,7 +49,7 @@ function generate(sequence) {
   //return ["a1", "h1"][count++ % 2]
 }
 
-let pgnToSquares = (pgn) => pgn.split(" ").map((s) => s.replace(/\d+\./, ""))
+let pgnToSquares = (pgn) => pgn.replace(/\d+\./g, "").split(/ +/)
 
 //https://www.chess.com/games/view/15776247
 //
@@ -87,6 +87,7 @@ function AuditoryTrainer({ generators}) {
   let [rate, setRate] = React.useState(2)
   let [square, setSquare] = React.useState()
   let [lastSquareChange, setLastSquareChange] = React.useState()
+  let [pastSquares, setPastSquares] = React.useState([])
 
   let generator = generators[generatorIndex].func
 
@@ -103,6 +104,7 @@ function AuditoryTrainer({ generators}) {
     utterance.voice = window.speechSynthesis.getVoices()[0]
     utterance.rate = 2
     window.speechSynthesis.speak(utterance)
+    setPastSquares([square, ...pastSquares])
   }, [lastSquareChange]);
 
   React.useEffect(() => {
@@ -129,6 +131,7 @@ function AuditoryTrainer({ generators}) {
         min={1}
         max={10}
       />
+      {pastSquares.length > 0 && <p>Past Squares: {pastSquares.join(", ")}</p>}
     </>
   )
 }
