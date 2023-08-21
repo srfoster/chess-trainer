@@ -17,6 +17,15 @@ const ROWS  = [
 function clarifySounds(square) {
   square = square.replace(/(\d)/, ",$1")
 
+  square = square.replace(/a/, "ALPHA ")
+  square = square.replace(/b/, "brAVO ")
+  square = square.replace(/c/, "CHArLIE ")
+  square = square.replace(/d/, "DELTA ")
+  square = square.replace(/e/, "ECHO ")
+  square = square.replace(/f/, "FOXTrOT ")
+  square = square.replace(/g/, "GOLF ")
+  square = square.replace(/h/, "HOTEL ")
+
   square = square.replace(/\+/, " check ")
   square = square.replace(/x/, " takes ")
   square = square.replace(/K/, "king ")
