@@ -1,10 +1,27 @@
+/*
+TODO:
+
+* Picture mode has made everything a mess with audio trainer.
+  - Need to do big refactoring.  
+     - The generators need to get rethunk
+     - Preprocess games with chess.js to get the verbose notation.  Dont do it on the fly. 
+  - Can KINDA get a game to work -- one time through
+  - Random squares are broken (interpreted as moves breaks things)
+* Add a button to start/stop the audio trainer
+
+
+*/
+
+
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 
 import Container from '@mui/material/Container';
 import Slider from '@mui/material/Slider';
-
+import { Chessboard } from "react-chessboard";
+import Switch from '@mui/material/Switch';
+import { Chess } from 'chess.js'
 
 const COLS  = [
   "a", "b", "c", "d", "e", "f", "g", "h"
@@ -13,6 +30,81 @@ const COLS  = [
 const ROWS  = [
   "1", "2", "3", "4", "5", "6", "7", "8"
 ]
+
+  let mappings = {
+    a1: "toast",
+    b1: "sand",
+    c1: "mud",
+    d1: "rat",
+    e1: "belt",
+    f1: "sheet",
+    g1: "cat",
+    h1: "foot",
+
+    a2: "tank",
+    b2: "nun",
+    c2: "moon",
+    d2: "rune",
+    e2: "plane",
+    f2: "jeans",
+    g2: "candy",
+    h2: "fin",
+
+    a3: "tomb",
+    b3: "nymph",
+    c3: "mime",
+    d3: "worm",
+    e3: "plum",
+    f3: "gem",
+    g3: "kimono",
+    h3: "foam",
+
+    a4: "torch",
+    b4: "snare",
+    c4: "mir",
+    d4: "roar",
+    e4: "lore",
+    f4: "cherry",
+    g4: "cream",
+    h4: "frog",
+
+    a5: "stool",
+    b5: "snail",
+    c5: "mole",
+    d5: "pearl",
+    e5: "lolli",
+    f5: "chalk",
+    g5: "coal",
+    h5: "waffle",
+    
+    a6: "dish",
+    b6: "hinge",
+    c6: "match",
+    d6: "brush",
+    e6: "bleach",
+    f6: "judge",
+    g6: "quiche",
+    h6: "fudge",
+
+    a7: "dig",
+    b7: "snake",
+    c7: "mask",
+    d7: "ring",
+    e7: "hulk",
+    f7: "chick",
+    g7: "cock",
+    h7: "fog",
+
+    a8: "dove",
+    b8: "knife",
+    c8: "muffin",
+    d8: "raft",
+    e8: "wolf",
+    f8: "java",
+    g8: "gift",
+    h8: "fife",
+  }
+
 
 function clarifySounds(square) {
   square = square.replace(/(\d)/, ",$1")
@@ -60,7 +152,7 @@ function generate(sequence) {
 
 let pgnToSquares = (pgn) => pgn.replace(/\d+\./g, "").split(/ +/)
 
-let dubovVNakamura = generate(pgnToSquares("1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. g3 Be7 5. Bg2 O-O 6. O-O dxc4 7. Qc2 b5 8. a4 Bb7 9. axb5 a6 10. Nc3 axb5 11. Rxa8 Bxa8 12. Nxb5 Bd5 13. Bf4 c5 14. dxc5 Qa5 15. Nc3 Qxc5 16. e4 Bc6 17. Be3 Qa5 18. Nd4 Rc8 19. h3 Be8 20. f4 Na6 21. e5 Nb4 22. Qd2 Nd7 23. Kh2 Qa6 24. Qe2 Nd3 25. f5 N7xe5 26. fxe6 fxe6 27. Nxe6 Bc6 28. Nd4 Bxg2 29. Qxg2 Rb8 30. Nf5 Bf6 31. Qd5+ Kh8 32. Ne4 Rxb2+ 33. Kh1 Rb5 34. Bc5 Qb7 (34... Nxc5 35. Nd4 Rb8 36. Nxc5 Qa5 37. Nde6 c3 38. Qe4 h6 39. Rc1 Qa3 40. Rf1 Rb4 41. Nd4 Rxd4 42. Qxd4 c2 43. Qa1 Qxc5 44. Qa8+ Kh7 45. Qe4+) 35. Nxf6 Qxd5+ 36. Nxd5 Rxc5 37. Nd4 h6 38. Ne7 Rc7 39. Rf8+ Kh7 40. Re8 Ng6 0-1"))
+let dubovVNakamura = generate(pgnToSquares("1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. g3 Be7 5. Bg2 O-O 6. O-O dxc4 7. Qc2 b5 8. a4 Bb7 9. axb5 a6 10. Nc3 axb5 11. Rxa8 Bxa8 12. Nxb5 Bd5 13. Bf4 c5 14. dxc5 Qa5 15. Nc3 Qxc5 16. e4 Bc6 17. Be3 Qa5 18. Nd4 Rc8 19. h3 Be8 20. f4 Na6 21. e5 Nb4 22. Qd2 Nd7 23. Kh2 Qa6 24. Qe2 Nd3 25. f5 N7xe5 26. fxe6 fxe6 27. Nxe6 Bc6 28. Nd4 Bxg2 29. Qxg2 Rb8 30. Nf5 Bf6 31. Qd5+ Kh8 32. Ne4 Rxb2+ 33. Kh1 Rb5 34. Bc5 Qb7 35. Nxf6 Qxd5+ 36. Nxd5 Rxc5 37. Nd4 h6 38. Ne7 Rc7 39. Rf8+ Kh7 40. Re8 Ng6 0-1"))
 
 //https://www.chess.com/games/view/15776247
 //
@@ -103,6 +195,16 @@ let diagonals = generate(
     "a2", "b1",
 ])
 
+function icon(square) {
+  if (mappings[square])
+    return <img width="100%" src={`/chess-trainer/icons/${mappings[square]}.svg`} />
+  else
+    return square
+}
+
+function pictureNotation(square, justPicture=true) {
+  return <span>{!justPicture && mappings[square]}<div style={{verticalAlign: "middle", display: "inline-block",width: 30, height: 30}}>{icon(square)}</div></span>
+}
 
 function App() {
   return (
@@ -120,12 +222,15 @@ function App() {
           { name: "capablanca vs forsberg", func: capablancaVforsberg},
           { name: "dubov vs nakamura", func: dubovVNakamura}
         ]} />
+      
+      <Chessboard id="BasicBoard" customSquare={(squareData, b, c) => {  return <div style={{ width: 50, height: 50 }}>{ icon(squareData.square)}</div>}} />
     </Container>
   );
 }
 
 
 //TODO: These should not be out here.  Use refs.
+let chess = new Chess();
 let utterance = new SpeechSynthesisUtterance()
 let timeout
 function AuditoryTrainer({ generators}) {
@@ -134,6 +239,8 @@ function AuditoryTrainer({ generators}) {
   let [square, setSquare] = React.useState()
   let [lastSquareChange, setLastSquareChange] = React.useState()
   let [pastSquares, setPastSquares] = React.useState([])
+  let [pastSquaresVerbose, setPastSquaresVerbose] = React.useState([])
+  let [pictureMode, setPictureMode] = React.useState(false)
 
   let generator = generators[generatorIndex].func
 
@@ -144,12 +251,33 @@ function AuditoryTrainer({ generators}) {
 
   React.useEffect(() => {
     //Speak the current one
-    if(square === undefined) return
-    utterance.text = clarifySounds(square)
+    if (square === undefined) return
     utterance.lang = 'en-US'
-    utterance.voice = window.speechSynthesis.getVoices()[pastSquares.length % 2]
-    utterance.rate = 2
-    window.speechSynthesis.speak(utterance)
+    utterance.voice = window.speechSynthesis.getVoices()[pastSquares.length % 2 + 1]
+    utterance.rate = pictureMode ? 1 : 2
+    if (!pictureMode) {
+      utterance.text = clarifySounds(square)
+      window.speechSynthesis.speak(utterance)
+    } 
+    try {
+      chess.move(square)
+    } catch (e) {
+      console.error(e)
+      if (pictureMode) {
+        utterance.text = mappings[square]
+        window.speechSynthesis.speak(utterance)
+      } 
+    }
+    let history = chess.history({ verbose: true });
+    var verboseMove = history.pop()
+    if (verboseMove) {
+      let s = verboseMove.from + "-" +  verboseMove.to
+      setPastSquaresVerbose([s, ...pastSquaresVerbose])
+      if (pictureMode) {
+        utterance.text = mappings[verboseMove.from] + " " + mappings[verboseMove.to]
+        window.speechSynthesis.speak(utterance)
+      } 
+    }
     setPastSquares([square, ...pastSquares])
   }, [lastSquareChange]);
 
@@ -170,14 +298,19 @@ function AuditoryTrainer({ generators}) {
       <select onChange={(e) => setGeneratorIndex(generators.findIndex(g => g.name === e.target.value))}>
         {generators.map(g => <option key={g.name} value={g.name}>{g.name}</option>)}
       </select>
-      <p>Current Square: {square} ({square && clarifySounds(square)})</p>
+      <p>Current Square: {pictureMode ? pictureNotation(square) : square}</p>
       <Slider value={rate} onChange={handleChange}
         valueLabelDisplay='off'
         marks={[{value: 1, label: '1s'}, {value: 2, label: '2s'}, {value: 3, label: '3s'}, {value: 4, label: '4s'}, {value: 5, label: '5s'}, {value: 6, label: '6s'}, {value: 7, label: '7s'}, {value: 8, label: '8s'}, {value: 9, label: '9s'}, {value: 10, label: '10s'}]}
         min={1}
         max={10}
       />
-      {pastSquares.length > 0 && <p>Past Squares: {pastSquares.join(", ")}</p>}
+      Picture Mode {pictureMode}: <Switch value={pictureMode} onChange={(event) => {
+        setPictureMode(event.target.checked)
+      }} />
+      {pastSquares.length > 0 && <p>Past Squares: {pastSquares.map((s,i) => { 
+        return <span key={i}>{pictureMode ? pictureNotation(s) : " " + s + " "}</span>
+      })}</p>}
     </>
   )
 }
