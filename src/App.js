@@ -17,6 +17,8 @@ import React from 'react';
 
 import Container from '@mui/material/Container';
 import Slider from '@mui/material/Slider';
+import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Button';
 import { Chessboard } from "react-chessboard";
 import Switch from '@mui/material/Switch';
 
@@ -43,64 +45,45 @@ let timeout
 function AuditoryTrainer({ games }) {
   let [rate, setRate] = React.useState(2)
   let [selectedGame, setSelectedGame] = React.useState(Object.keys(games)[0])
-
-  /*
-  let [square, setSquare] = React.useState()
+  let [square, setSquare] = React.useState(0)
   let [lastSquareChange, setLastSquareChange] = React.useState()
-  let [pastSquares, setPastSquares] = React.useState([])
-  let [pastSquaresVerbose, setPastSquaresVerbose] = React.useState([])
   let [pictureMode, setPictureMode] = React.useState(false)
 
-  let generator = generators[generatorIndex].func
-
   const handleChange = (event, newValue) => {
-    console.log(event)
     setRate(newValue)
   };
+
+  let currentMove
+    
+  if(pictureMode)
+    currentMove = games[selectedGame].pictureMoveWords()[square]
+  else
+    currentMove = games[selectedGame].moves()[square]
+
 
   React.useEffect(() => {
     //Speak the current one
     if (square === undefined) return
     utterance.lang = 'en-US'
-    utterance.voice = window.speechSynthesis.getVoices()[pastSquares.length % 2 + 1]
+    utterance.voice = window.speechSynthesis.getVoices()[square % 2 + 1]
     utterance.rate = pictureMode ? 1 : 2
     if (!pictureMode) {
-      utterance.text = clarifySounds(square)
-      window.speechSynthesis.speak(utterance)
-    } 
-    try {
-      chess.move(square)
-    } catch (e) {
-      console.error(e)
-      if (pictureMode) {
-        utterance.text = mappings[square]
-        window.speechSynthesis.speak(utterance)
-      } 
+      utterance.text = util.clarifySounds(currentMove)
+    } else {
+      utterance.text = currentMove
     }
-    let history = chess.history({ verbose: true });
-    var verboseMove = history.pop()
-    if (verboseMove) {
-      let s = verboseMove.from + "-" +  verboseMove.to
-      setPastSquaresVerbose([s, ...pastSquaresVerbose])
-      if (pictureMode) {
-        utterance.text = mappings[verboseMove.from] + " " + mappings[verboseMove.to]
-        window.speechSynthesis.speak(utterance)
-      } 
-    }
-    setPastSquares([square, ...pastSquares])
+    window.speechSynthesis.speak(utterance)
   }, [lastSquareChange]);
 
   React.useEffect(() => {
     //Set a timeout to chang the square
     if(timeout) clearInterval(timeout)
     timeout = setInterval(() => {
-      if(generator === undefined) return
-      setSquare(generator())
+      setSquare((s)=>s+1)
       setLastSquareChange(new Date())
     }, rate*1000);
     return () => clearInterval(timeout);
-  }, [rate, generator]);
-  */
+  }, [rate]);
 
   return (
     <>
@@ -108,10 +91,9 @@ function AuditoryTrainer({ games }) {
       <select onChange={(e) => setSelectedGame(e.target.value)}>
         {Object.keys(games).map(k => <option key={k} value={k}>{k}</option>)}
       </select>
-      <GameDisplay game={ games[selectedGame]}></GameDisplay>
 
-      {/*
-       <p>Current Square: {pictureMode ? pictureNotation(square) : square}</p>
+      <p>Current Square: {pictureMode ? util.pictureNotation(square) : currentMove}</p>
+      <Button onClick={ ()=>setSquare(0)}>Restart</Button>
       <Slider value={rate} onChange={handleChange}
         valueLabelDisplay='off'
         marks={[{value: 1, label: '1s'}, {value: 2, label: '2s'}, {value: 3, label: '3s'}, {value: 4, label: '4s'}, {value: 5, label: '5s'}, {value: 6, label: '6s'}, {value: 7, label: '7s'}, {value: 8, label: '8s'}, {value: 9, label: '9s'}, {value: 10, label: '10s'}]}
@@ -121,9 +103,8 @@ function AuditoryTrainer({ games }) {
       Picture Mode {pictureMode}: <Switch value={pictureMode} onChange={(event) => {
         setPictureMode(event.target.checked)
       }} />
-      {pastSquares.length > 0 && <p>Past Squares: {pastSquares.map((s,i) => { 
-        return <span key={i}>{pictureMode ? pictureNotation(s) : " " + s + " "}</span>
-      })}</p>} */}
+       
+      <GameDisplay game={ games[selectedGame]}></GameDisplay>
 
     </>
   )
@@ -132,11 +113,18 @@ function AuditoryTrainer({ games }) {
 function GameDisplay({ game }) {
   return (
     <>
-      <p>{game.moves()}</p>  
-      <p>{game.longMoves()}</p>  
-      <p>{game.pictureMoves()}</p>
+      <MovesDisplay moves={game.moves()} />
+      <MovesDisplay moves={game.longMoves()} />
+      <MovesDisplay moves={game.pictureMoves()}
+        wrapper={(m) => <Chip label={m} />}
+      />
     </>
   )
+}
+
+function MovesDisplay({ moves, wrapper }) {
+  if (!wrapper) wrapper = (m) => <span>{m}</span>
+  return <p>{util.groupInPairs(moves).map((pair, i) => <div>{i + 1}. {wrapper(pair[0])} {wrapper(pair[1])}</div>)}</p>
 }
 
 export default App;

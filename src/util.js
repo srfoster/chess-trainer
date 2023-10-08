@@ -138,6 +138,16 @@ export function pictureNotation(square, justPicture=true) {
   return <span>{!justPicture && mappings[square]}<div style={{verticalAlign: "middle", display: "inline-block",width: 30, height: 30}}>{icon(square)}</div></span>
 }
 
+export function groupInPairs(arr) {
+    var groups = [];
+
+    for (var i = 0; i < arr.length; i += 2) {
+        groups.push(arr.slice(i, i + 2));
+    }
+
+    return groups
+}
+
 export class Game {
     _moves = []
     _longMoves = []
@@ -169,6 +179,12 @@ export class Game {
     pictureMoves() {
         return this._longMoves.map(lm => {
             return lm.split("-").map((s)=>pictureNotation(s,true))
+        })
+    }
+
+    pictureMoveWords() {
+        return this._longMoves.map(lm => {
+            return lm.split("-").map((s)=>mappings[s])
         })
     }
 }
