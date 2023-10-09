@@ -149,12 +149,14 @@ export function groupInPairs(arr) {
 }
 
 export class Game {
+    chess
     _moves = []
     _longMoves = []
+    _fens = []
     constructor(pgn) {
         //this._moves = pgnToSquares(pgn)
 
-        let chess = new Chess();
+        this.chess = new Chess();
 
         /*
         for (let i = 0; i < this._moves.length; i++) {
@@ -165,11 +167,12 @@ export class Game {
             }
         }
         */
-        chess.loadPgn(pgn)
-        let moveHistory = chess.history({ verbose: true });
+        this.chess.loadPgn(pgn)
+        let moveHistory = this.chess.history({ verbose: true });
 
         this._moves = moveHistory.map(m => m.san)
         this._longMoves = moveHistory.map(m => m.from + "-" + m.to)
+        this._fens = moveHistory.map(m => m.after)
     }
 
     moves() {
@@ -190,5 +193,9 @@ export class Game {
         return this._longMoves.map(lm => {
             return lm.split("-").map((s)=>mappings[s])
         })
+    }
+
+    fens() {
+        return this._fens
     }
 }

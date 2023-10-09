@@ -108,6 +108,12 @@ function AuditoryTrainer({ games }) {
       Picture Mode {pictureMode}: <Switch value={pictureMode} onChange={(event) => {
         setPictureMode(event.target.checked)
       }} />
+
+
+      <Chessboard id="LiveBoard" position={ 
+        games[selectedGame].fens()[square]
+      }></Chessboard>
+
        
       <GameDisplay game={ games[selectedGame]}></GameDisplay>
 
