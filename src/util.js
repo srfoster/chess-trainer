@@ -152,10 +152,11 @@ export class Game {
     _moves = []
     _longMoves = []
     constructor(pgn) {
-        this._moves = pgnToSquares(pgn)
+        //this._moves = pgnToSquares(pgn)
 
         let chess = new Chess();
 
+        /*
         for (let i = 0; i < this._moves.length; i++) {
             try {
               chess.move(this._moves[i]);
@@ -163,8 +164,11 @@ export class Game {
               console.error("Error moving", this._moves[i]) 
             }
         }
+        */
+        chess.loadPgn(pgn)
         let moveHistory = chess.history({ verbose: true });
 
+        this._moves = moveHistory.map(m => m.san)
         this._longMoves = moveHistory.map(m => m.from + "-" + m.to)
     }
 

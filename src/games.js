@@ -31,6 +31,58 @@ let diagonals =
 
 import { Game } from "./util"
 
+let stephenVsOscar1 = new Game(`
+[Event "Vs. Computer"]
+[Site "Chess.com"]
+[Date "2023-10-01"]
+[White "stephenrfoster"]
+[Black "Oscar"]
+[Result "1-0"]
+[TimeControl "-"]
+[Termination "stephenrfoster won by checkmate"]
+[UTCDate "2023.10.02"]
+[UTCTime "15:19:03"]
+[Variant "Standard"]
+[ECO "B27"]
+[Opening "Pterodactyl Defense: Sicilian, Rhamphorhynchus"]
+[Annotator "https://lichess.org/@/stephenfoster"]
+
+{ My first win against Oscar. I played it over a few days while at the Celebration of Life for my Grandma Jody. Finished it Oct 1, 2023. I've lost many games against this bot before, and I did a few things differently this time:
+
+* Try to leave nothing to chance
+* Treat each move seriously
+* Always evaluate all checks, captures, and forcing moves -- for myself, for my opponent, and recursively in each move of a variation.
+* Relentlessly search for plans, and never move aimlessly
+
+Doing all of this was tiring, which is why I could only manage a few moves each day. But I hope that by playing more such games against the computer, I can put my tactical abilities into practice and eventually speed the whole process up. }
+1. d4 { [%eval 0.0] } 1... g6?! { [%eval 0.68] } { Inaccuracy. Nf6 was best. } (1... Nf6 2. c4 e6 3. Nf3 d5 4. cxd5 exd5 5. Bf4 c6 6. Nc3) 2. e4 { [%eval 0.68] } 2... Bg7 { [%eval 0.73] } 3. Nf3 { [%eval 0.61] } 3... c5 { [%eval 0.72] } 4. dxc5 { [%eval 0.63] } 4... Qa5+ { [%eval 1.18] } 5. Nc3? { [%eval -0.05] } { Mistake. c3 was best. } (5. c3 Qxc5 6. Na3 Nf6 7. Nb5 O-O 8. Be3 Qc6 9. Nfd4 Qxe4) 5... Qxc5?! { [%eval 0.86] } { Inaccuracy. Bxc3+ was best. } (5... Bxc3+ 6. bxc3 Qxc3+ 7. Bd2 Qxc5 8. Bd3 d6 9. O-O Nf6 10. Bh6) 6. Bd2 { [%eval 0.52] } (6. Nd5 Nf6) 6... d6?! { [%eval 1.12] } { Inaccuracy. Nf6 was best. } (6... Nf6 7. Be3 Qa5 8. Nd2 Nc6 9. Nb3 Qc7 10. Nd5 Qd8 11. Nxf6+) 7. Bd3?! { [%eval 0.3] } { Inaccuracy. Nd5 was best. } (7. Nd5 Bd7 8. h4 Qc8 9. h5 Nc6 10. Qc1 gxh5 11. c4 Qd8) 7... Qb6 { [%eval 0.81] } 8. Rb1 { [%eval 0.41] } 8... Nf6 { [%eval 0.35] } 9. O-O { [%eval 0.38] } 9... Nc6 { [%eval 0.69] } 10. Re1 { [%eval 0.3] } 10... O-O { [%eval 0.57] } 11. h3 { [%eval 0.53] } 11... Qa5 { [%eval 0.8] } 12. a3 { [%eval 0.64] } 12... Bd7 { [%eval 0.91] } 13. Nb5 { [%eval 0.81] } 13... Qd8 { [%eval 0.89] } 14. Bc3?! { [%eval -0.01] } { Inaccuracy. c4 was best. } (14. c4 Bc8 15. Bf1 Nd7 16. b4 b6 17. Qc1 Nde5 18. Nxe5 Nxe5 19. Bh6 Bd7 20. Bxg7 Kxg7) 14... a6 { [%eval 0.02] } 15. Nbd4 { [%eval 0.03] } 15... e5 { [%eval 0.07] } 16. Ne2 { [%eval -0.23] } 16... h6 { [%eval -0.02] } 17. Bd2 { [%eval -0.18] } 17... b5 { [%eval -0.02] } 18. c3 { [%eval -0.48] } 18... Be6 { [%eval -0.33] } 19. Ng3 { [%eval -0.41] } 19... Qd7 { [%eval -0.22] } 20. Qe2 { [%eval -0.46] } 20... Ba2 { [%eval 0.08] } 21. Rbc1 { [%eval 0.0] } 21... Rab8 { [%eval 0.33] } 22. b4 { [%eval 0.25] } 22... Rfe8 { [%eval 0.74] } 23. Be3 { [%eval 0.52] } 23... Bb3 { [%eval 0.7] } 24. Nd2 { [%eval 0.35] } 24... Be6 { [%eval 0.26] } 25. a4 { [%eval 0.29] } 25... Qb7 { [%eval 0.33] } 26. Nb1 { [%eval 0.07] } 26... d5 { [%eval 0.4] } 27. Na3?! { [%eval -0.29] } { Inaccuracy. axb5 was best. } (27. axb5 axb5) 27... Ne7?! { [%eval 0.63] } { Inaccuracy. bxa4 was best. } (27... bxa4 28. Bxa6) 28. Bc5 { [%eval 0.46] } 28... Nxe4 { [%eval 0.86] } 29. Bxe4?! { [%eval 0.27] } { Inaccuracy. Nxe4 was best. } (29. Nxe4 dxe4) 29... dxe4 { [%eval 0.3] } 30. Nxe4 { [%eval 0.38] } 30... Red8? { [%eval 1.84] } { Mistake. Nf5 was best. } (30... Nf5) 31. Bd6?! { [%eval 0.97] } { Inaccuracy. axb5 was best. } (31. axb5 axb5 32. Bd6 Bd5 33. Bxb8 Rxb8 34. Nc5 Qc6 35. f3 Nf5 36. Rcd1 Nh4 37. Rf1 Nf5) 31... Rbc8? { [%eval 2.63] } { Mistake. Rxd6 was best. } (31... Rxd6 32. Nxd6 Qc6 33. Ne4 Nd5 34. Qf3 f5 35. Nc5 Bf7 36. axb5 axb5 37. Qg3 Nf4 38. Nd3) 32. Nc5 { [%eval 2.28] } 32... Qa7 { [%eval 2.38] } 33. Nxe6 { [%eval 2.35] } 33... Rxd6 { [%eval 2.61] } 34. Nxg7 { [%eval 2.82] } 34... f6 { [%eval 3.22] } 35. Nh5 { [%eval 3.05] } 35... gxh5 { [%eval 2.89] } 36. axb5 { [%eval 3.15] } 36... Kg7 { [%eval 3.64] } 37. c4 { [%eval 3.77] } 37... Rd4 { [%eval 3.47] } 38. bxa6 { [%eval 3.72] } 38... Qxa6 { [%eval 3.56] } 39. Nb5 { [%eval 3.82] } 39... Rh4 { [%eval 3.69] } 40. Red1 { [%eval 3.86] } 40... Rhxc4? { [%eval 6.28] } { Mistake. Qe6 was best. } (40... Qe6 41. Rd6 Qf5 42. Rd3 Qf4 43. Rcd1 Nf5 44. c5 Qxb4 45. Nd6 Nxd6 46. cxd6 Qc4 47. Rg3+) 41. Rxc4 { [%eval 6.38] } 41... Qxb5 { [%eval 6.33] } 42. Rg4+ { [%eval 6.35] } 42... hxg4 { [%eval 6.38] } 43. Qxb5 { [%eval 6.48] } 43... gxh3 { [%eval 6.65] } 44. gxh3 { [%eval 6.44] } 44... Kf8 { [%eval 6.75] } 45. Rd7 { [%eval 6.66] } 45... Ke8?! { [%eval 9.64] } { Inaccuracy. Rc6 was best. } (45... Rc6 46. Ra7 h5 47. Qb7 Re6 48. Qd7 Kf7 49. Qd5 h4 50. Qb3 f5 51. Ra6 Kf6) 46. Rc7+ { [%eval 11.56] } 46... Kf8 { [%eval #12] } 47. Rxc8+ { [%eval 44.16] } 47... Nxc8 { [%eval 9.61] } 48. Qc5+ { [%eval 39.18] } 48... Ne7 { [%eval 44.13] } 49. b5 { [%eval #10] } 49... f5 { [%eval #7] } 50. b6 { [%eval #6] } 50... Kg8 { [%eval #3] } 51. Qxe7 { [%eval #2] } 51... Kh8 { [%eval #2] } 52. b7 { [%eval #1] } 52... Kg8 { [%eval #1] } 53. b8=Q# { 1-0 White wins. } 1-0 `)
+
+let stephenVsOscar2 = new Game(`
+[Event "vs Computer"]
+[Site "Chess.com"]
+[Date "2023.10.06"]
+[Round "-"]
+[White "stephenrfoster"]
+[Black "Oscar-BOT"]
+[Result "0-1"]
+[WhiteElo "1819"]
+[BlackElo "2100"]
+[TimeControl "1/0"]
+[Termination "Oscar-BOT won by resignation"]
+[UTCDate "2023.10.07"]
+[UTCTime "00:15:36"]
+[Variant "Standard"]
+[ECO "B06"]
+[Opening "Pterodactyl Defense: Eastern, Pterodactyl"]
+[Annotator "https://lichess.org/@/stephenfoster"]
+
+{ Material imbalance, but equal game. Caught a new Pokemon.
+
+Also, how should we have proceeded then?? }
+1. d4 g6 2. e4 Bg7 3. Nc3 c5 4. dxc5 Qa5 5. Bd2 Qxc5 6. Nf3? d6?! 7. Bd3? Nc6 8. O-O Be6?! 9. Nb5?! Ne5? 10. Be3 Qc8?! 11. Nxa7 Nxf3+ 12. Qxf3 Qb8 13. Nb5 Bxb2 14. Rab1 Be5 15. Bb6 Bxa2 16. Nc7+ Kf8 17. Bb5?! Ra7?! 18. c4 Nf6 19. Bxa7? Qxa7 20. Rb4?! Qc5 21. Ra4 Qxc7 22. Rxa2 Kg7 23. h3 Qc5 24. Qd3 Qd4?! 25. Qxd4 Bxd4 26. Re1 Rc8 27. Kh1 e5?! 28. f3 h5 29. Rb1? h4! 30. Rd1 Nh5 31. Kh2? Nf4 32. g3 hxg3+ 33. Kxg3 Rh8?! 34. h4 f5 35. Rb1 g5 36. Rh1 Kf7 37. Rah2?? gxh4+ 38. Rxh4 Rg8+! 39. Rg4 Ne2+ 40. Kg2 Nf4+ 41. Kg3 fxg4 42. fxg4 Kf6 { <br /><br
+/>Game may have continued... } (43. Rh7 Ra8 44. g5+ Kxg5 45. Rg7+ Kf6 46. Rxb7 Bc5 { -5.02 }) 0-1
+`)
+
 let dubovVNakamura = new Game("1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. g3 Be7 5. Bg2 O-O 6. O-O dxc4 7. Qc2 b5 8. a4 Bb7 9. axb5 a6 10. Nc3 axb5 11. Rxa8 Bxa8 12. Nxb5 Bd5 13. Bf4 c5 14. dxc5 Qa5 15. Nc3 Qxc5 16. e4 Bc6 17. Be3 Qa5 18. Nd4 Rc8 19. h3 Be8 20. f4 Na6 21. e5 Nb4 22. Qd2 Nd7 23. Kh2 Qa6 24. Qe2 Nd3 25. f5 N7xe5 26. fxe6 fxe6 27. Nxe6 Bc6 28. Nd4 Bxg2 29. Qxg2 Rb8 30. Nf5 Bf6 31. Qd5+ Kh8 32. Ne4 Rxb2+ 33. Kh1 Rb5 34. Bc5 Qb7 35. Nxf6 Qxd5+ 36. Nxd5 Rxc5 37. Nd4 h6 38. Ne7 Rc7 39. Rf8+ Kh7 40. Re8 Ng6 0-1")
 
 let fischerVkurz = new Game("1. e4 e6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Nd7 5. Nf3 Ngf6 6. Bg5 Be7 7. Nxf6+ Nxf6 8. Bd3 O-O 9. Qe2 c6 10. O-O-O Qc7 11. h4 b6 12. Ne5 Bb7 13. Rh3 Rad8 14. Rg3 Kh8 15. Bxf6 Bxf6 16. Qh5 h6 17. Rg6 fxg6 18. Qxg6 1-0")
@@ -41,4 +93,4 @@ let capablancaVbergsten = new Game("1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. e3 Bf5 5. cx
 
 let capablancaVforsberg =  new Game("1. e3 g6 2. d4 Bg7 3. Nf3 d5 4. c4 e6 5. Nc3 Nf6 6. Be2 O-O 7. O-O b6 8. cxd5 exd5 9. Ne5 c5 10. b3 Ba6 11. Ba3 Re8 12. Bxa6 Nxa6 13. f4 cxd4 14. exd4 Nc7 15.  Rc1 a6 16. f5 Nb5 17. fxg6 hxg6 18. Bb4 Nxd4 19. Qxd4 Nd7 20. Nxd5 Rxe5 21. Qf2 f5 22. Rfd1 Re4 23. Bc3 Rc8 24. Bxg7 Rxc1 25. Rxc1 Kxg7 26. Rc7 Kf8 27. Qd2 Qe8 28. Nf6 Re1+ 29. Kf2 Re2+ 30. Qxe2 Qxe2+ 31. Kxe2 Nxf6 32. Rc6 Nd5 33. Rd6 1-0")
 
-export default { /*diagonals,*/ fischerVkurz, capablancaVbenito, capablancaVbergsten, capablancaVforsberg, dubovVNakamura }
+export default { /*diagonals,*/ stephenVsOscar1, stephenVsOscar2, fischerVkurz, capablancaVbenito, capablancaVbergsten, capablancaVforsberg, dubovVNakamura }

@@ -9,6 +9,11 @@ TODO:
   - Random squares are broken (interpreted as moves breaks things)
 * Add a button to start/stop the audio trainer
 
+* Tabs to toggle between notations 
+
+* Display the game in real time
+
+* Mind palace features: Show numbers on the square for each move in the "db"
 
 */
 
@@ -79,7 +84,7 @@ function AuditoryTrainer({ games }) {
     //Set a timeout to chang the square
     if(timeout) clearInterval(timeout)
     timeout = setInterval(() => {
-      setSquare((s)=>s+1)
+      setSquare((s)=>(s+1)%games[selectedGame].moves().length)
       setLastSquareChange(new Date())
     }, rate*1000);
     return () => clearInterval(timeout);
@@ -117,6 +122,9 @@ function GameDisplay({ game }) {
       <MovesDisplay moves={game.longMoves()} />
       <MovesDisplay moves={game.pictureMoves()}
         wrapper={(m) => <Chip label={m} />}
+      />
+      <MovesDisplay moves={game.pictureMoveWords()}
+        wrapper={(m) => <Chip label={m ? m.join(" ") : m} />}
       />
     </>
   )
