@@ -93,4 +93,24 @@ let capablancaVbergsten = new Game("1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. e3 Bf5 5. cx
 
 let capablancaVforsberg =  new Game("1. e3 g6 2. d4 Bg7 3. Nf3 d5 4. c4 e6 5. Nc3 Nf6 6. Be2 O-O 7. O-O b6 8. cxd5 exd5 9. Ne5 c5 10. b3 Ba6 11. Ba3 Re8 12. Bxa6 Nxa6 13. f4 cxd4 14. exd4 Nc7 15.  Rc1 a6 16. f5 Nb5 17. fxg6 hxg6 18. Bb4 Nxd4 19. Qxd4 Nd7 20. Nxd5 Rxe5 21. Qf2 f5 22. Rfd1 Re4 23. Bc3 Rc8 24. Bxg7 Rxc1 25. Rxc1 Kxg7 26. Rc7 Kf8 27. Qd2 Qe8 28. Nf6 Re1+ 29. Kf2 Re2+ 30. Qxe2 Qxe2+ 31. Kxe2 Nxf6 32. Rc6 Nd5 33. Rd6 1-0")
 
-export default { /*diagonals,*/ stephenVsOscar1, stephenVsOscar2, fischerVkurz, capablancaVbenito, capablancaVbergsten, capablancaVforsberg, dubovVNakamura }
+let ct96386 = new Game(`
+[Result "*"]
+[Event "CT Problem"]
+[Site "Chesstempo.com"]
+[Date "????.??.??"]
+[Round "-"]
+[White "player"]
+[Black "96386"]
+[SetUp "1"]
+[FEN "4r2k/1Q3pbp/3p4/7P/4BqbR/2P1N3/1P3P2/4K3 b - - 0 1"]
+
+1... f5 1.h6 ( { +3.65 } 1.h6 Bxh6 2.Rxg4 Qe5 3.Nxf5 Qxf5 4.Kf1 Rxe4 5.Qa8+ Re8 6.Qxe8+ Bf8 7.Qe4 Qxe4 8.Rxe4 ) ( { -0.02 } 1.Bc6 Rxe3+ 2.fxe3 Qxe3+ 3.Kf1 Be2+ 4.Kg2 Qg5+ 5.Kf2 Qxh4+ 6.Kxe2 Qxh5+ 7.Bf3 Qe8+ ) ( { -0.68 } 1.Bb1 Bh6 2.Kf1 Be2+ 3.Ke1 Qxh4 4.Bxf5 Re7 5.Qa8+ Kg7 6.Kxe2 Qh2 7.Kf1 Bxe3 8.fxe3 ) ( { -0.72 } 1.Bd5 Qg5 2.Rh2 f4 3.h6 Bxc3+ 4.bxc3 fxe3 5.Qg7+ Qxg7 6.hxg7+ Kxg7 7.fxe3 Rxe3+ ) ( { -1.69 } 1.Bh1 Bf6 2.Rxg4 fxg4 3.Bc6 Rf8 4.Be4 Bg7 5.h6 Qxf2+ 6.Kd1 Qg1+ 7.Kc2 Qh2+ ) 1...Bxh6 ( { -3.87 } 1...Bxh6 2.Rxg4 Qe5 3.Nxf5 Qxf5 4.Kf1 Rxe4 5.Qxe4 Qxe4 6.Rxe4 d5 7.Re7 Bc1 8.b4 Bg5 9.Ra7 Bf6 ) ( { -5.18 } 1...Qe5 2.hxg7+ Qxg7 3.Qxg7+ Kxg7 4.Bc6 Re7 5.Kd2 Rc7 6.Bd5 Kg6 7.f3 Kg5 8.Rh1 Bh5 9.f4+ Kg6 10.Be6 Bg4 11.Bxf5+ Bxf5 ) ( { -5.18 } 1...Qg5 2.hxg7+ Qxg7 3.Qxg7+ Kxg7 4.Bc6 Re7 5.Kd2 Rc7 6.Bd5 Kg6 7.f3 Kg5 8.Rh1 Bh5 9.f4+ Kg6 10.Be6 Bg4 11.Bxf5+ Bxf5 ) ( { -6.60 } 1...Bf8 2.Rxg4 Qxh6 3.Nxf5 Qe6 4.Kf1 d5 5.Qxd5 Qxd5 6.Bxd5 h6 7.Bf7 Rd8 8.b4 Kh7 9.Ke2 Rd7 ) ( { -7.05 } 1...Bf6 2.Qf7 Qe5 3.Rxg4 Qe7 4.Qxe7 Bxe7 5.Nxf5 d5 6.Bxd5 Bf6+ 7.Re4 Rxe4+ 8.Bxe4 Be5 9.Ke2 Kg8 ) 2.Rxg4 ( { +3.77 } 2.Rxg4 Qe5 3.Nxf5 Qxf5 4.Kf1 Rxe4 5.Qa8+ Bf8 6.Qxe4 Qxe4 7.Rxe4 Kg7 8.Ke2 Kg6 9.Rg4+ Kf5 ) ( { -0.93 } 2.Rxh6 Qxh6 3.Bc6 Rxe3+ 4.fxe3 Qxe3+ 5.Kf1 f4 6.Kg2 Qe2+ 7.Kg1 Qe1+ 8.Kg2 Qd2+ 9.Kg1 ) ( { -1.06 } 2.Kf1 Rxe4 3.Nxg4 Qc1+ 4.Kg2 Rxg4+ 5.Rxg4 fxg4 6.Qc8+ Kg7 7.Qd7+ Kf6 8.Qxd6+ Kf5 9.Qd5+ ) ( { -2.65 } 2.Nxg4 Qxe4+ 3.Qxe4 Rxe4+ 4.Kd1 Bg5 5.Rh5 Rxg4 6.b4 Kg7 7.b5 Rg1+ 8.Kc2 Rg2 9.b6 ) ( { -3.31 } 2.Bf3 Rxe3+ 3.fxe3 Qxe3+ 4.Kf1 Bxf3 5.Qc8+ Kg7 6.Qd7+ Kg8 7.Qb5 Bf8 8.Rd4 Qg5 9.Kf2 ) *
+`)
+
+
+export default { /*diagonals,*/
+    stephenVsOscar1, stephenVsOscar2,
+
+    ct96386
+    //fischerVkurz, capablancaVbenito, capablancaVbergsten, capablancaVforsberg, dubovVNakamura
+}

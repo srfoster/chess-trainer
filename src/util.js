@@ -148,6 +148,8 @@ export function groupInPairs(arr) {
     return groups
 }
 
+export let counts = {}
+
 export class Game {
     chess
     _moves = []
@@ -173,6 +175,20 @@ export class Game {
         this._moves = moveHistory.map(m => m.san)
         this._longMoves = moveHistory.map(m => m.from + "-" + m.to)
         this._fens = moveHistory.map(m => m.after)
+
+        for (let move of this._longMoves) {
+            if (!counts[move]) counts[move] = 0
+            counts[move]++
+
+            let from = move.split("-")[0]
+            let to = move.split("-")[1]
+
+            if (!counts[from]) counts[from] = 0
+            counts[from]++
+
+            if (!counts[to]) counts[to] = 0
+            counts[to]++
+        }
     }
 
     moves() {
