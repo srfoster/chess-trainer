@@ -83,6 +83,7 @@ Also, how should we have proceeded then?? }
 />Game may have continued... } (43. Rh7 Ra8 44. g5+ Kxg5 45. Rg7+ Kf6 46. Rxb7 Bc5 { -5.02 }) 0-1
 `)
 
+/*
 let dubovVNakamura = new Game("1. d4 Nf6 2. c4 e6 3. Nf3 d5 4. g3 Be7 5. Bg2 O-O 6. O-O dxc4 7. Qc2 b5 8. a4 Bb7 9. axb5 a6 10. Nc3 axb5 11. Rxa8 Bxa8 12. Nxb5 Bd5 13. Bf4 c5 14. dxc5 Qa5 15. Nc3 Qxc5 16. e4 Bc6 17. Be3 Qa5 18. Nd4 Rc8 19. h3 Be8 20. f4 Na6 21. e5 Nb4 22. Qd2 Nd7 23. Kh2 Qa6 24. Qe2 Nd3 25. f5 N7xe5 26. fxe6 fxe6 27. Nxe6 Bc6 28. Nd4 Bxg2 29. Qxg2 Rb8 30. Nf5 Bf6 31. Qd5+ Kh8 32. Ne4 Rxb2+ 33. Kh1 Rb5 34. Bc5 Qb7 35. Nxf6 Qxd5+ 36. Nxd5 Rxc5 37. Nd4 h6 38. Ne7 Rc7 39. Rf8+ Kh7 40. Re8 Ng6 0-1")
 
 let fischerVkurz = new Game("1. e4 e6 2. d4 d5 3. Nc3 dxe4 4. Nxe4 Nd7 5. Nf3 Ngf6 6. Bg5 Be7 7. Nxf6+ Nxf6 8. Bd3 O-O 9. Qe2 c6 10. O-O-O Qc7 11. h4 b6 12. Ne5 Bb7 13. Rh3 Rad8 14. Rg3 Kh8 15. Bxf6 Bxf6 16. Qh5 h6 17. Rg6 fxg6 18. Qxg6 1-0")
@@ -92,6 +93,8 @@ let capablancaVbenito =  new Game("1. d4 d5 2. Nf3 Nf6 3. e3 c6 4. Bd3 Bg4 5. c4
 let capablancaVbergsten = new Game("1. d4 d5 2. c4 c6 3. Nf3 Nf6 4. e3 Bf5 5. cxd5 cxd5 6. Qb3 Qc7 7. Nc3 e6 8. Bd2 Nc6 9. Rc1 Be7 10. Be2 O-O 11. O-O Rfc8 12. Nh4 Ng4 13. Nf3 Be4 14. g3 Bf5 15.  Na4 h6 16. h3 Nf6 17. Kh2 Ne4 18. Be1 Bd6 19. Nd2 Qe7 20. Nxe4 dxe4 21. Kg2 e5 22. d5 Nb4 23. Bxb4 Bxb4 24. Rfd1 Rxc1 25. Rxc1 Bd6 26. Nc3 Qd7 27. g4 Bg6 28.  Nb5 Bb8 29. Qc3 Bd6 30. Nxd6 Qxd6 31. Qc5 Qd8 32. d6 f6 33. Bc4+ Kh7 34. Qc7 Rc8 35. Be6 Rb8 36. Qxd8 Rxd8 37. d7 Be8 38. Bf5+ g6 39. dxe8=Q Rxe8 40. Rc7+ 1-0")
 
 let capablancaVforsberg =  new Game("1. e3 g6 2. d4 Bg7 3. Nf3 d5 4. c4 e6 5. Nc3 Nf6 6. Be2 O-O 7. O-O b6 8. cxd5 exd5 9. Ne5 c5 10. b3 Ba6 11. Ba3 Re8 12. Bxa6 Nxa6 13. f4 cxd4 14. exd4 Nc7 15.  Rc1 a6 16. f5 Nb5 17. fxg6 hxg6 18. Bb4 Nxd4 19. Qxd4 Nd7 20. Nxd5 Rxe5 21. Qf2 f5 22. Rfd1 Re4 23. Bc3 Rc8 24. Bxg7 Rxc1 25. Rxc1 Kxg7 26. Rc7 Kf8 27. Qd2 Qe8 28. Nf6 Re1+ 29. Kf2 Re2+ 30. Qxe2 Qxe2+ 31. Kxe2 Nxf6 32. Rc6 Nd5 33. Rd6 1-0")
+
+*/
 
 let ct96386 = new Game(`
 [Result "*"]

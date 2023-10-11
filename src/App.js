@@ -1,19 +1,12 @@
 /*
 TODO:
 
-* Picture mode has made everything a mess with audio trainer.
-  - Need to do big refactoring.  
-     - The generators need to get rethunk
-     - Preprocess games with chess.js to get the verbose notation.  Dont do it on the fly. 
-  - Can KINDA get a game to work -- one time through
-  - Random squares are broken (interpreted as moves breaks things)
 * Add a button to start/stop the audio trainer
 
 * Tabs to toggle between notations 
 
-* Display the game in real time
-
-* Mind palace features: Show numbers on the move for each move in the "db"
+* Mind palace features: Show numbers on the square for each move in the "db"
+  - 
 
 */
 
@@ -42,7 +35,8 @@ function App() {
         return <div style={{ width: 50, height: 50 }}>{util.icon(squareData.square) }</div>
       }} />
 
-      <Chessboard id="StatsBoard" customSquare={(squareData, b, c) => {  return <div style={{ width: 50, height: 50 }}>{ util.counts[squareData.square]}</div>}} />
+      <SquareSearch />
+
     </Container>
   );
 }
@@ -146,6 +140,28 @@ function GameDisplay({ game }) {
 function MovesDisplay({ moves, wrapper }) {
   if (!wrapper) wrapper = (m) => <span>{m}</span>
   return <p>{util.groupInPairs(moves).map((pair, i) => <div>{i + 1}. {wrapper(pair[0])} {wrapper(pair[1])}</div>)}</p>
+}
+
+function SquareSearch() {
+  let [selectedSquare, setSelectedSquare] = React.useState() 
+  let [drawArrows, setDrawArrows] = React.useState() 
+
+  return (<>
+    <Chessboard id="StatsBoard" customSquare={(squareData, b, c) => {
+      return <div onClick={() => { 
+        console.log(squareData.square)
+        setSelectedSquare(squareData.square)
+    } }  style={{ width: 50, height: 50 }}>{(util.counts[squareData.square]||[]).length}</div> }} />
+    {selectedSquare && util.counts[selectedSquare] && util.counts[selectedSquare].map((s,i) => {
+      return <div style={{width: 300, height: 300, display: "inline-block"}}>
+        <Chessboard id={"Result" + s.fen + i}
+          position={s.fen}
+          customArrows={[[s.from, s.to, "red"]]}
+          boardWidth={300}
+        />
+      </div>
+    })}
+  </>)
 }
 
 export default App;

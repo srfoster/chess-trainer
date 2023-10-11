@@ -176,18 +176,17 @@ export class Game {
         this._longMoves = moveHistory.map(m => m.from + "-" + m.to)
         this._fens = moveHistory.map(m => m.after)
 
-        for (let move of this._longMoves) {
-            if (!counts[move]) counts[move] = 0
-            counts[move]++
+        for (let i = 0; i < this._longMoves.length; i++) {
+            let move = this._longMoves[i]
+
+            if (!counts[move]) counts[move] = []
+            counts[move].push({move: move, fen: this._fens[i], index: i})
 
             let from = move.split("-")[0]
             let to = move.split("-")[1]
 
-            if (!counts[from]) counts[from] = 0
-            counts[from]++
-
-            if (!counts[to]) counts[to] = 0
-            counts[to]++
+            if (!counts[to]) counts[to] = []
+            counts[to].push({from: from, to: to, fen: this._fens[i], index: i})
         }
     }
 
