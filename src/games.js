@@ -110,10 +110,34 @@ let ct96386 = new Game(`
 1... f5 1.h6 ( { +3.65 } 1.h6 Bxh6 2.Rxg4 Qe5 3.Nxf5 Qxf5 4.Kf1 Rxe4 5.Qa8+ Re8 6.Qxe8+ Bf8 7.Qe4 Qxe4 8.Rxe4 ) ( { -0.02 } 1.Bc6 Rxe3+ 2.fxe3 Qxe3+ 3.Kf1 Be2+ 4.Kg2 Qg5+ 5.Kf2 Qxh4+ 6.Kxe2 Qxh5+ 7.Bf3 Qe8+ ) ( { -0.68 } 1.Bb1 Bh6 2.Kf1 Be2+ 3.Ke1 Qxh4 4.Bxf5 Re7 5.Qa8+ Kg7 6.Kxe2 Qh2 7.Kf1 Bxe3 8.fxe3 ) ( { -0.72 } 1.Bd5 Qg5 2.Rh2 f4 3.h6 Bxc3+ 4.bxc3 fxe3 5.Qg7+ Qxg7 6.hxg7+ Kxg7 7.fxe3 Rxe3+ ) ( { -1.69 } 1.Bh1 Bf6 2.Rxg4 fxg4 3.Bc6 Rf8 4.Be4 Bg7 5.h6 Qxf2+ 6.Kd1 Qg1+ 7.Kc2 Qh2+ ) 1...Bxh6 ( { -3.87 } 1...Bxh6 2.Rxg4 Qe5 3.Nxf5 Qxf5 4.Kf1 Rxe4 5.Qxe4 Qxe4 6.Rxe4 d5 7.Re7 Bc1 8.b4 Bg5 9.Ra7 Bf6 ) ( { -5.18 } 1...Qe5 2.hxg7+ Qxg7 3.Qxg7+ Kxg7 4.Bc6 Re7 5.Kd2 Rc7 6.Bd5 Kg6 7.f3 Kg5 8.Rh1 Bh5 9.f4+ Kg6 10.Be6 Bg4 11.Bxf5+ Bxf5 ) ( { -5.18 } 1...Qg5 2.hxg7+ Qxg7 3.Qxg7+ Kxg7 4.Bc6 Re7 5.Kd2 Rc7 6.Bd5 Kg6 7.f3 Kg5 8.Rh1 Bh5 9.f4+ Kg6 10.Be6 Bg4 11.Bxf5+ Bxf5 ) ( { -6.60 } 1...Bf8 2.Rxg4 Qxh6 3.Nxf5 Qe6 4.Kf1 d5 5.Qxd5 Qxd5 6.Bxd5 h6 7.Bf7 Rd8 8.b4 Kh7 9.Ke2 Rd7 ) ( { -7.05 } 1...Bf6 2.Qf7 Qe5 3.Rxg4 Qe7 4.Qxe7 Bxe7 5.Nxf5 d5 6.Bxd5 Bf6+ 7.Re4 Rxe4+ 8.Bxe4 Be5 9.Ke2 Kg8 ) 2.Rxg4 ( { +3.77 } 2.Rxg4 Qe5 3.Nxf5 Qxf5 4.Kf1 Rxe4 5.Qa8+ Bf8 6.Qxe4 Qxe4 7.Rxe4 Kg7 8.Ke2 Kg6 9.Rg4+ Kf5 ) ( { -0.93 } 2.Rxh6 Qxh6 3.Bc6 Rxe3+ 4.fxe3 Qxe3+ 5.Kf1 f4 6.Kg2 Qe2+ 7.Kg1 Qe1+ 8.Kg2 Qd2+ 9.Kg1 ) ( { -1.06 } 2.Kf1 Rxe4 3.Nxg4 Qc1+ 4.Kg2 Rxg4+ 5.Rxg4 fxg4 6.Qc8+ Kg7 7.Qd7+ Kf6 8.Qxd6+ Kf5 9.Qd5+ ) ( { -2.65 } 2.Nxg4 Qxe4+ 3.Qxe4 Rxe4+ 4.Kd1 Bg5 5.Rh5 Rxg4 6.b4 Kg7 7.b5 Rg1+ 8.Kc2 Rg2 9.b6 ) ( { -3.31 } 2.Bf3 Rxe3+ 3.fxe3 Qxe3+ 4.Kf1 Bxf3 5.Qc8+ Kg7 6.Qd7+ Kg8 7.Qb5 Bf8 8.Rd4 Qg5 9.Kf2 ) *
 `)
 
+let ct136855 = new Game(`
+
+[Result "*"]
+[Event "CT Problem"]
+[Site "Chesstempo.com"]
+[Date "????.??.??"]
+[Round "-"]
+[White "player"]
+[Black "136855"]
+[SetUp "1"]
+[FEN "6k1/4N1p1/8/5p2/3Pp3/2p1P1P1/4K2n/8 b - - 0 1"]
+
+1...Kf7 1.Nxf5 ( { -0.27 } 1.Nxf5 Nf1 2.Kd1 Kf6 3.Nd6 Nxg3 4.Nb5 c2+ 5.Kxc2 Nf1 6.Nd6 Nxe3+ 7.Kb3 Ke6 8.Nxe4 Kd5 9.Ng5 Nf5 10.Kc3 Nxd4 ) ( { -2.09 } 1.Nd5 c2 2.Kd2 Nf1+ 3.Kxc2 Ke6 4.Nf4+ Kd6 5.Ng2 Nxg3 6.Kd2 g5 7.Ke1 Nh5 8.Kf2 f4 9.exf4 gxf4 10.Nxf4 Nxf4 11.Ke3 Kd5 12.Kxf4 ) ( { -4.15 } 1.Nc6 Nf1 2.Nb4 Nxg3+ 3.Kd1 Ke6 4.Na6 Nf1 5.Nc7+ Kd6 6.Nb5+ Kc6 7.Nxc3 Nxe3+ 8.Ke2 Nd5 9.Na4 g5 10.Nc5 g4 ) ( { -8.54 } 1.Nc8 Nf1 2.Kd1 Nxe3+ 3.Kc1 Nc4 4.Kc2 e3 5.Nd6+ Kf6 6.Kd3 c2 7.Nxc4 c1=Q 8.Nxe3 Qg1 9.Nd5+ Kf7 10.g4 Qxg4 ) ( { -11.81 } 1.Kd1 Kxe7 2.Kc2 Ng4 3.d5 Nxe3+ 4.Kxc3 Nf1 5.Kd4 Nxg3 6.Ke3 Kd6 7.Kf2 f4 8.Kg2 Kxd5 9.Kf2 e3+ 10.Kg2 ) 1...Nf1 ( { +0.07 } 1...Nf1 2.Kd1 g6 3.Nd6+ Ke6 4.Nxe4 Nxe3+ 5.Kc1 c2 6.Nc3 Kf6 7.Kd2 Kf5 8.d5 Ke5 9.d6 Kxd6 10.Ne2 Nf5 11.Kxc2 Ke5 12.Kd2 g5 ) ( { 0.00 } 1...c2 2.Kd2 Ng4 3.Kxc2 Ke6 4.Nxg7+ Kf6 5.Ne8+ Ke7 6.Nc7 Nxe3+ 7.Kc3 Kd6 8.Nb5+ Kc6 9.Kb4 Nd5+ 10.Kc4 Ne3+ 11.Kb4 ) ( { 0.00 } 1...Ke6 2.Nxg7+ Kd5 3.Nf5 Ke6 4.Ng7+ ) ( { 0.00 } 1...Kg6 2.Ne7+ Kf7 3.Nf5 ) ( { 0.00 } 1...Ng4 2.Nd6+ Kg6 3.Nxe4 c2 4.Kd2 Nxe3 5.g4 Kf7 6.Nc3 Ke6 7.Ne2 Nxg4 8.Kxc2 g5 9.Kd3 Nf6 10.Ke3 g4 11.Kf4 Kd6 12.Kf5 Ke7 13.d5 Nxd5 14.Kxg4 Ne3+ 15.Kf3 ) 2.Kd1 ( { -0.22 } 2.Kd1 Kf6 3.g4 g6 4.Nd6 Nxe3+ 5.Kc1 Ke6 6.Nxe4 Kd5 7.Nxc3+ Kxd4 8.Ne2+ Ke5 9.g5 Kf5 10.Kd2 Nd5 11.Nd4+ ) ( { -7.30 } 2.Nd6+ Ke7 3.Kxf1 c2 4.Nxe4 c1=Q+ 5.Ke2 Qc4+ 6.Kf2 Qa2+ 7.Kf3 Qd5 8.Kf4 Qf7+ 9.Ke5 Qe6+ 10.Kf4 g6 11.g4 g5+ 12.Nxg5 Qf6+ 13.Ke4 Qxg5 ) ( { -7.43 } 2.Kxf1 c2 3.Nd6+ Ke7 4.Nxe4 c1=Q+ 5.Kf2 g5 6.Ke2 Qc4+ 7.Kd2 Qa2+ 8.Kc3 Qe2 9.Nc5 Qxe3+ 10.Kc2 Qxd4 11.Nd3 ) ( { -9.49 } 2.g4 c2 3.Ng3 c1=Q 4.Nxf1 Kg6 5.d5 Qc2+ 6.Ke1 Kg5 7.Nd2 Qd3 8.Kd1 Qxd5 9.Ke1 Qd3 10.Nf1 Kxg4 11.Kf2 ) ( { -11.35 } 2.d5 c2 3.Kxf1 c1=Q+ 4.Ke2 Qc2+ 5.Ke1 Qc3+ 6.Ke2 Qd3+ 7.Ke1 g6 8.Nh4 Qxe3+ 9.Kf1 Qxg3 10.Ng2 e3 11.Kg1 e2 12.Kh1 e1=Q+ 13.Nxe1 Qxe1+ ) *
+
+`)
+
+let moreGames = require("./db.js").default
+let moreGamesHash = {}
+
+for (let i = 0; i < moreGames.length; i++) {
+  moreGamesHash["dynamicLoad" + i] = moreGames[i]
+}
+
+console.log("more", moreGamesHash, moreGames)
 
 export default { /*diagonals,*/
     stephenVsOscar1, stephenVsOscar2,
 
-    ct96386
+    ct96386, ct136855, ...moreGamesHash, 
     //fischerVkurz, capablancaVbenito, capablancaVbergsten, capablancaVforsberg, dubovVNakamura
 }
