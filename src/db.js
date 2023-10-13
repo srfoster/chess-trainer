@@ -239,6 +239,108 @@ let myPuzzles = `
 
 `
 
+let otherGames = `
+
+[Event "Wch Rapid"]
+[Site "Khanty-Mansiysk"]
+[Date "2013.06.07"]
+[Round "6"]
+[White "Ponkratov, Pavel"]
+[Black "Pridorozhni, Aleksei"]
+[Result "1-0"]
+[WhiteElo "2605"]
+[BlackElo "2512"]
+[Variant "Standard"]
+[TimeControl "-"]
+[ECO "B06"]
+[Opening "Pterodactyl Defense: Eastern, Pterodactyl"]
+[Termination "Unknown"]
+[Annotator "lichess.org"]
+
+1. d4 g6 2. e4 Bg7 3. Nc3 c5 4. dxc5 Qa5 { B06 Pterodactyl Defense: Eastern, Pterodactyl } 5. Bd2 Qxc5 6. Nd5 Na6 7. Nf3 e6 8. Bc3 Bxc3+?! { (0.37 → 1.13) Inaccuracy. Kf8 was best. } (8... Kf8 9. Bxg7+ Kxg7 10. Nc3 Nf6 11. e5 Ng4 12. Qe2 d6 13. exd6 Qxd6 14. Ne4 Qe7 15. O-O-O) 9. Nxc3 d6 10. Qd2 Nf6 11. O-O-O O-O 12. Qxd6 Qxf2? { (1.83 → 3.27) Mistake. Qxd6 was best. } (12... Qxd6 13. Rxd6 Nc5 14. Rd4 Ng4 15. e5 Nh6 16. Be2 Nf5 17. Rd2 a5 18. Rhd1 b6 19. g4) 13. Qf4 Kg7 14. Bxa6 bxa6 15. Qe5 Qb6?! { (2.93 → 4.31) Inaccuracy. Qe3+ was best. } (15... Qe3+) 16. Rhf1 Qb8 17. Qd4?? { (4.34 → 1.81) Blunder. Rd6 was best. } (17. Rd6 Kg8 18. Qxf6 Qxd6 19. Nd5 Re8 20. Ne5 Qf8 21. Nxf7 Qg7 22. Nd6 exd5 23. Qxg7+ Kxg7) 17... Qb6?? { (1.81 → 4.30) Blunder. Qc7 was best. } (17... Qc7 18. g4) 18. Qe5 Qb8 19. Rd6 Kg8 20. Qd4? { (3.85 → 2.20) Mistake. Qxf6 was best. } (20. Qxf6 Qxd6 21. Nd5 Re8 22. Ne5 Qf8 23. Nxf7 Qg7 24. Nd6 exd5 25. Qxg7+ Kxg7 26. Nxe8+ Kg8) 20... Ne8 21. Rd8 Qb6?! { (1.71 → 2.40) Inaccuracy. Qf4+ was best. } (21... Qf4+) 22. Qxb6 axb6 23. Ne5 Bb7 24. Rxa8 Bxa8 25. Nd7 Nd6?? { (2.12 → 4.47) Blunder. b5 was best. } (25... b5) 26. Rd1 Nb7? { (4.07 → 6.60) Mistake. Ne8 was best. } (26... Ne8 27. Nxf8) 27. Nxf8 Kxf8 28. Rd7? { (6.44 → 3.69) Mistake. Na4 was best. } (28. Na4 b5 29. Nb6 Nc5 30. Rd8+ Ke7 31. Rxa8 Kf6 32. Ra7 h6 33. Kd2 Ke5 34. Rxf7 a5) 28... Ke8 29. Rc7 Nd8 30. a4 h5 31. h4 f5 32. exf5 gxf5 33. g3 e5 34. Kd2?! { (4.35 → 3.45) Inaccuracy. Rh7 was best. } (34. Rh7 Bf3 35. Rh6 b5 36. Rf6 Bg4 37. a5 Kd7 38. Rxa6 Nc6 39. Kd2 b4 40. Nd5 Bf3) 34... f4? { (3.45 → 5.48) Mistake. Bf3 was best. } (34... Bf3) 35. gxf4 exf4 36. Rc4 f3 37. Ke3 Kd7 38. Rd4+ Ke8 39. Rb4 Kd7 40. Rxb6 Nf7 41. Rxa6 Bc6 42. Ra7+ Ke6 43. Nb5 Kd5 { White wins. } 1-0
+
+---
+
+[Event "Podgorica Balkan GP final 3rd"]
+[Site "Podgorica"]
+[Date "2011.12.19"]
+[Round "9"]
+[White "Ivanisevic, Ivan"]
+[Black "Stanojoski, Zvonko"]
+[Result "1-0"]
+[WhiteElo "2636"]
+[BlackElo "2470"]
+[Variant "Standard"]
+[TimeControl "-"]
+[ECO "B06"]
+[Opening "Pterodactyl Defense: Eastern, Pterodactyl"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. d4 g6 2. e4 Bg7 3. Nc3 c5 4. dxc5 Qa5?! { (0.66 → 1.48) Inaccuracy. Bxc3+ was best. } { B06 Pterodactyl Defense: Eastern, Pterodactyl } (4... Bxc3+ 5. bxc3 Qa5 6. Qd4 Nf6 7. Qb4 Qc7 8. f3 b6 9. cxb6) 5. Bd2 Qxc5 6. Nd5 Na6 7. Nf3 e6 8. Bc3 f6? { (0.95 → 2.27) Mistake. Kf8 was best. } (8... Kf8 9. Bxg7+ Kxg7 10. Nc3 Nc7 11. Qd2 e5 12. h4 h5 13. O-O-O Nf6 14. Ng5 b5 15. f4) 9. b4 Qf8 10. Bxa6 exd5 11. Bb5 dxe4 12. O-O exf3?! { (1.43 → 2.13) Inaccuracy. Ne7 was best. } (12... Ne7 13. Qd4) 13. Re1+ Ne7 14. Qxf3? { (2.54 → 0.80) Mistake. Qd4 was best. } (14. Qd4) 14... f5?? { (0.80 → 2.94) Blunder. Qf7 was best. } (14... Qf7 15. Qe3) 15. Rad1 h5 16. Bxd7+?! { (3.21 → 2.12) Inaccuracy. Rd6 was best. } (16. Rd6) 16... Bxd7 17. Rxd7 Kxd7 18. Qxb7+ Kd6?? { (3.81 → 8.37) Blunder. Ke8 was best. } (18... Ke8 19. Qc6+) 19. Bxg7 Qxg7 20. c4 Rac8 21. c5+ Rxc5 22. bxc5+ Kxc5 23. Qc7+ Kd5 24. Qd7+ Kc5 25. Rc1+ Kb6 26. Qc7+ Ka6 27. Rc6+?? { (Mate in 4 → 6.10) Lost forced checkmate sequence. Rb1 was best. } (27. Rb1 Qb2 28. Rxb2 Rb8 29. Qxb8 Ka5 30. Qxa7#) 27... Nxc6 28. Qxg7 Re8 29. h3 Re6 30. Qc3 { Black resigns. } 1-0
+
+---
+
+[Event "Stepanakert Petrosian Memorial"]
+[Site "Stepanakert"]
+[Date "2004.03.09"]
+[Round "1"]
+[White "Sveshnikov, Evgeny"]
+[Black "Ghaem Maghami, Ehsan"]
+[Result "1-0"]
+[WhiteElo "2557"]
+[BlackElo "2549"]
+[Variant "Standard"]
+[TimeControl "-"]
+[ECO "B06"]
+[Opening "Pterodactyl Defense: Eastern, Pterodactyl"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 g6 2. d4 Bg7 3. Nc3 c5 4. dxc5 Qa5 { B06 Pterodactyl Defense: Eastern, Pterodactyl } 5. Bd2 Qxc5 6. Nd5 Na6 7. Nf3 Bxb2? { (0.55 → 1.95) Mistake. e6 was best. } (7... e6 8. b4 Qf8 9. Ne3 Nf6 10. Bd3 Qe7 11. e5 Nd5 12. Nxd5) 8. Rb1 Bg7 9. Bxa6 bxa6 10. O-O a5?? { (2.14 → 4.92) Blunder. Kf8 was best. } (10... Kf8 11. Rb3) 11. Be3 Qc6 12. Bf4?! { (4.79 → 3.58) Inaccuracy. Qd2 was best. } (12. Qd2) 12... d6 13. Nd4 Bxd4 14. Qxd4 f6 15. Rb3 Kf7? { (3.22 → 5.10) Mistake. Be6 was best. } (15... Be6 16. Rc3) 16. Rc3 Qd7 17. Rc7 Qd8? { (4.14 → 8.85) Mistake. Qe6 was best. } (17... Qe6 18. Qa4 Ba6 19. Re1 Rc8 20. Rxa7 Rc5 21. Nc7 Rxc7 22. Rxc7 g5 23. Qxa5 gxf4 24. Qxa6) 18. Qc4?? { (8.85 → 2.31) Blunder. Rxe7+ was best. } (18. Rxe7+) 18... Be6 19. Qc6 Rc8 20. Bxd6 Rxc7 21. Bxc7 Qd7 22. Qxd7 Bxd7 23. Rb1 e6 24. Ne3 Bc6 25. f3 Ne7 26. Bxa5 e5 27. Nc4 Ke6 28. Rd1 Rb8 29. Rd6+ Kf7 30. Bd8 Rc8 31. Ne3 Ke8?! { (1.36 → 2.09) Inaccuracy. f5 was best. } (31... f5 32. Nc4 Bxe4 33. Nxe5+ Ke8 34. fxe4 Rxd8 35. Rxd8+ Kxd8 36. exf5 Nxf5 37. Kf2 Kc7 38. Ke2) 32. Ba5 Kf7 33. Ng4 Ng8 34. Bd8 Bb5 35. Nxf6? { (2.28 → 1.00) Mistake. a4 was best. } (35. a4 Bc4 36. Nxf6 Nxf6 37. Bxf6 Rc5 38. Bg5 Rc7 39. Bd8 Rc5 40. h4 Rc8 41. Bg5 Rc7) 35... Nxf6 36. Bxf6 Rxc2 37. Bxe5 Rc1+ 38. Kf2 Rc2+ 39. Kg3 Rxa2 40. Bd4 Rd2 41. e5 Bf1 42. Bxa7 Rxg2+ 43. Kf4 Bc4 44. Rf6+ Ke8 45. Bc5 Kd7 46. Rd6+ Ke8 47. Rb6 Kd7 48. e6+ Kc7 49. e7 Re2? { (1.57 → 3.02) Mistake. Bf7 was best. } (49... Bf7) 50. Rf6?! { (3.02 → 2.11) Inaccuracy. Rb2 was best. } (50. Rb2) 50... Bb5 51. Rf8 Bd7 52. Be3 g5+?! { (2.82 → 4.30) Inaccuracy. Rxh2 was best. } (52... Rxh2 53. e8=N+ Bxe8 54. Rxe8 Kd6 55. Rb8 Ke6 56. Rb6+ Kf7 57. Bd4 Rh1 58. Rf6+ Ke7 59. Be5) 53. Ke4 Bc6+ 54. Kd4 Rxh2 55. Bxg5 Rf2 56. Bh4?! { (5.71 → 3.95) Inaccuracy. Bf4+ was best. } (56. Bf4+) 56... Rf1 57. Ke3 { Black resigns. } 1-0
+
+---
+
+[Event "Pyramiden Franken Cup 3rd"]
+[Site "Fuerth"]
+[Date "2000.08.25"]
+[Round "7"]
+[White "Hector, Jonny"]
+[Black "Al Modiahki, Mohamad"]
+[Result "1-0"]
+[WhiteElo "2509"]
+[BlackElo "2499"]
+[Variant "Standard"]
+[TimeControl "-"]
+[ECO "B27"]
+[Opening "Pterodactyl Defense: Western, Rhamphorhynchus"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 c5 2. Nf3 g6 3. d4 Bg7 4. dxc5 Qa5+ { B27 Pterodactyl Defense: Western, Rhamphorhynchus } 5. Bd2 Qxc5 6. Nc3 Nf6 7. Bd3 d6 8. h3 O-O 9. Qe2 Nbd7 10. b4 Qxb4 11. Nd5 Qa4 12. Nxe7+ Kh8 13. Ng5 Nc5 14. O-O Bd7 15. Bc3 Qa3 16. Qd2 a5 17. Rab1 Rae8 18. Bb2 Nfxe4 19. Bxg7+ Kxg7 20. Bxe4 Rxe7 21. Qxd6 Rfe8 22. Rb3 Qxa2 23. Qxc5 Rxe4 24. Nxe4 Rxe4 25. Qc3+ { Black resigns. } 1-0
+
+---
+
+[Event "Bucharest"]
+[Site "Bucharest"]
+[Date "1974.03.12"]
+[Round "4"]
+[White "Westerinen, Heikki MJ"]
+[Black "Partos, Charles"]
+[Result "1-0"]
+[WhiteElo "2435"]
+[BlackElo "2425"]
+[Variant "Standard"]
+[TimeControl "-"]
+[ECO "B27"]
+[Opening "Pterodactyl Defense: Western, Rhamphorhynchus"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 c5 2. Nf3 g6 3. d4 Bg7 4. dxc5 Qa5+ { B27 Pterodactyl Defense: Western, Rhamphorhynchus } 5. Bd2 Qxc5 6. Nc3 Nf6 7. Be3 Qa5 8. Qd2 Nc6 9. Bc4 O-O 10. Bb3 b5 11. Nd5 Qxd2+ 12. Nxd2 Nxd5 13. exd5 Nd4 14. O-O-O Bb7 15. Rhe1 Nxb3+ 16. Nxb3 e6 17. dxe6 dxe6 18. f3 Bd5 19. Bd4 f6 20. Nc5 Kf7 21. Na6 Rfc8 22. Nb4 Bb7 23. Bb6 Ke7 24. Ba5 Bh6+ 25. Kb1 a6 26. Rd3 Bc6 27. Bd8+ Kf7 28. Nxc6 Rxc6 29. Rd7+ Kg8 30. Bxf6 Rac8 31. c3 b4 32. Re4 bxc3 33. Bxc3 Bf8 34. Rh4 h5 35. Rf4 e5 36. Rff7 Ba3 37. f4 exf4 38. Rh7 Rxc3 39. bxc3 Rxc3 40. Rdg7+ Kf8 41. Rc7 Rxc7 42. Rxc7 a5 43. Kc2 Bd6 44. Rd7 Be7 45. Ra7 { Black resigns. } 1-0
+
+`
+
 export default `
 
 ${myGames}
@@ -246,6 +348,10 @@ ${myGames}
 ---
 
 ${myPuzzles}
+
+---
+
+${otherGames}
 
 `.split("---").map((pgn) => new Game(pgn))
 

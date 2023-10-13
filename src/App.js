@@ -1,10 +1,14 @@
 /*
 TODO:
 
-* Add a button to start/stop the audio trainer
+* "Playlists" by playtime (e.g. totals to 30 minutes, etc)
+  - Might want to be able to change this dynamically so that the playtime fits my workout...
 
-* Mind palace features: Show numbers on the square for each move in the "db"
-  - 
+* Note, playtimes won't be correct for problems that repeat (fewer than 10 moves)
+
+* Need to figure out what the repetition rules are, and whether the should be configurable
+
+* Add a button to start/stop the audio trainer
 
 */
 
@@ -140,7 +144,7 @@ function AuditoryTrainer({ games }) {
 
       <Chessboard id="LiveBoard"
         boardOrientation={
-          selectedGame.startsWith("player") ? "white" : "black"
+          (!selectedGame.includes("player") || selectedGame.startsWith("player")) ? "white" : "black"
          }
         position={ 
         games[selectedGame].fens()[move < 0 ? 0 : move]
