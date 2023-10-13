@@ -97,9 +97,10 @@ function AuditoryTrainer({ games }) {
       setMove((s) => {
         if(s >= games[selectedGame].moves().length) {
           console.log(games[selectedGame].timesPlayed, games[selectedGame].moves().length ) 
-          if (games[selectedGame].timesPlayed * games[selectedGame].moves().length < 30) {
+          if (games[selectedGame].timesPlayed * games[selectedGame].moves().length < 20) {
             games[selectedGame].timesPlayed++
           } else {
+            games[selectedGame].timesPlayed = 0 //Gross stateful stuff
             setSelectedGame(nextGame())
           }
 
