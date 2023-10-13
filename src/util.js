@@ -214,4 +214,8 @@ export class Game {
     fens() {
         return this._fens
     }
+
+    header() {
+        return this.chess.header()
+    }
 }

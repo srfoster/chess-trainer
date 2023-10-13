@@ -1,6 +1,63 @@
 import { Game } from "./util";
 
-export default `[Result "*"]
+let myGames = `
+
+[Event "Vs. Computer"]
+[Site "Chess.com"]
+[Date "2023-10-01"]
+[White "player"]
+[Black "Oscar"]
+[Result "1-0"]
+[TimeControl "-"]
+[Termination "stephenrfoster won by checkmate"]
+[UTCDate "2023.10.02"]
+[UTCTime "15:19:03"]
+[Variant "Standard"]
+[ECO "B27"]
+[Opening "Pterodactyl Defense: Sicilian, Rhamphorhynchus"]
+[Annotator "https://lichess.org/@/stephenfoster"]
+
+{ My first win against Oscar. I played it over a few days while at the Celebration of Life for my Grandma Jody. Finished it Oct 1, 2023. I've lost many games against this bot before, and I did a few things differently this time:
+
+* Try to leave nothing to chance
+* Treat each move seriously
+* Always evaluate all checks, captures, and forcing moves -- for myself, for my opponent, and recursively in each move of a variation.
+* Relentlessly search for plans, and never move aimlessly
+
+Doing all of this was tiring, which is why I could only manage a few moves each day. But I hope that by playing more such games against the computer, I can put my tactical abilities into practice and eventually speed the whole process up. }
+1. d4 { [%eval 0.0] } 1... g6?! { [%eval 0.68] } { Inaccuracy. Nf6 was best. } (1... Nf6 2. c4 e6 3. Nf3 d5 4. cxd5 exd5 5. Bf4 c6 6. Nc3) 2. e4 { [%eval 0.68] } 2... Bg7 { [%eval 0.73] } 3. Nf3 { [%eval 0.61] } 3... c5 { [%eval 0.72] } 4. dxc5 { [%eval 0.63] } 4... Qa5+ { [%eval 1.18] } 5. Nc3? { [%eval -0.05] } { Mistake. c3 was best. } (5. c3 Qxc5 6. Na3 Nf6 7. Nb5 O-O 8. Be3 Qc6 9. Nfd4 Qxe4) 5... Qxc5?! { [%eval 0.86] } { Inaccuracy. Bxc3+ was best. } (5... Bxc3+ 6. bxc3 Qxc3+ 7. Bd2 Qxc5 8. Bd3 d6 9. O-O Nf6 10. Bh6) 6. Bd2 { [%eval 0.52] } (6. Nd5 Nf6) 6... d6?! { [%eval 1.12] } { Inaccuracy. Nf6 was best. } (6... Nf6 7. Be3 Qa5 8. Nd2 Nc6 9. Nb3 Qc7 10. Nd5 Qd8 11. Nxf6+) 7. Bd3?! { [%eval 0.3] } { Inaccuracy. Nd5 was best. } (7. Nd5 Bd7 8. h4 Qc8 9. h5 Nc6 10. Qc1 gxh5 11. c4 Qd8) 7... Qb6 { [%eval 0.81] } 8. Rb1 { [%eval 0.41] } 8... Nf6 { [%eval 0.35] } 9. O-O { [%eval 0.38] } 9... Nc6 { [%eval 0.69] } 10. Re1 { [%eval 0.3] } 10... O-O { [%eval 0.57] } 11. h3 { [%eval 0.53] } 11... Qa5 { [%eval 0.8] } 12. a3 { [%eval 0.64] } 12... Bd7 { [%eval 0.91] } 13. Nb5 { [%eval 0.81] } 13... Qd8 { [%eval 0.89] } 14. Bc3?! { [%eval -0.01] } { Inaccuracy. c4 was best. } (14. c4 Bc8 15. Bf1 Nd7 16. b4 b6 17. Qc1 Nde5 18. Nxe5 Nxe5 19. Bh6 Bd7 20. Bxg7 Kxg7) 14... a6 { [%eval 0.02] } 15. Nbd4 { [%eval 0.03] } 15... e5 { [%eval 0.07] } 16. Ne2 { [%eval -0.23] } 16... h6 { [%eval -0.02] } 17. Bd2 { [%eval -0.18] } 17... b5 { [%eval -0.02] } 18. c3 { [%eval -0.48] } 18... Be6 { [%eval -0.33] } 19. Ng3 { [%eval -0.41] } 19... Qd7 { [%eval -0.22] } 20. Qe2 { [%eval -0.46] } 20... Ba2 { [%eval 0.08] } 21. Rbc1 { [%eval 0.0] } 21... Rab8 { [%eval 0.33] } 22. b4 { [%eval 0.25] } 22... Rfe8 { [%eval 0.74] } 23. Be3 { [%eval 0.52] } 23... Bb3 { [%eval 0.7] } 24. Nd2 { [%eval 0.35] } 24... Be6 { [%eval 0.26] } 25. a4 { [%eval 0.29] } 25... Qb7 { [%eval 0.33] } 26. Nb1 { [%eval 0.07] } 26... d5 { [%eval 0.4] } 27. Na3?! { [%eval -0.29] } { Inaccuracy. axb5 was best. } (27. axb5 axb5) 27... Ne7?! { [%eval 0.63] } { Inaccuracy. bxa4 was best. } (27... bxa4 28. Bxa6) 28. Bc5 { [%eval 0.46] } 28... Nxe4 { [%eval 0.86] } 29. Bxe4?! { [%eval 0.27] } { Inaccuracy. Nxe4 was best. } (29. Nxe4 dxe4) 29... dxe4 { [%eval 0.3] } 30. Nxe4 { [%eval 0.38] } 30... Red8? { [%eval 1.84] } { Mistake. Nf5 was best. } (30... Nf5) 31. Bd6?! { [%eval 0.97] } { Inaccuracy. axb5 was best. } (31. axb5 axb5 32. Bd6 Bd5 33. Bxb8 Rxb8 34. Nc5 Qc6 35. f3 Nf5 36. Rcd1 Nh4 37. Rf1 Nf5) 31... Rbc8? { [%eval 2.63] } { Mistake. Rxd6 was best. } (31... Rxd6 32. Nxd6 Qc6 33. Ne4 Nd5 34. Qf3 f5 35. Nc5 Bf7 36. axb5 axb5 37. Qg3 Nf4 38. Nd3) 32. Nc5 { [%eval 2.28] } 32... Qa7 { [%eval 2.38] } 33. Nxe6 { [%eval 2.35] } 33... Rxd6 { [%eval 2.61] } 34. Nxg7 { [%eval 2.82] } 34... f6 { [%eval 3.22] } 35. Nh5 { [%eval 3.05] } 35... gxh5 { [%eval 2.89] } 36. axb5 { [%eval 3.15] } 36... Kg7 { [%eval 3.64] } 37. c4 { [%eval 3.77] } 37... Rd4 { [%eval 3.47] } 38. bxa6 { [%eval 3.72] } 38... Qxa6 { [%eval 3.56] } 39. Nb5 { [%eval 3.82] } 39... Rh4 { [%eval 3.69] } 40. Red1 { [%eval 3.86] } 40... Rhxc4? { [%eval 6.28] } { Mistake. Qe6 was best. } (40... Qe6 41. Rd6 Qf5 42. Rd3 Qf4 43. Rcd1 Nf5 44. c5 Qxb4 45. Nd6 Nxd6 46. cxd6 Qc4 47. Rg3+) 41. Rxc4 { [%eval 6.38] } 41... Qxb5 { [%eval 6.33] } 42. Rg4+ { [%eval 6.35] }  1-0
+
+---
+
+[Event "vs Computer"]
+[Site "Chess.com"]
+[Date "2023.10.06"]
+[Round "-"]
+[White "player"]
+[Black "Oscar-BOT"]
+[Result "0-1"]
+[WhiteElo "1819"]
+[BlackElo "2100"]
+[TimeControl "1/0"]
+[Termination "Oscar-BOT won by resignation"]
+[UTCDate "2023.10.07"]
+[UTCTime "00:15:36"]
+[Variant "Standard"]
+[ECO "B06"]
+[Opening "Pterodactyl Defense: Eastern, Pterodactyl"]
+[Annotator "https://lichess.org/@/stephenfoster"]
+
+{ Material imbalance, but equal game. Caught a new Pokemon.
+
+Also, how should we have proceeded then?? }
+1. d4 { [%eval 0.0] } 1... g6?! { [%eval 0.68] } { Inaccuracy. Nf6 was best. } (1... Nf6 2. c4 e6 3. Nf3 d5 4. cxd5 exd5 5. Bf4 c6 6. Nc3) 2. e4 { [%eval 0.68] } 2... Bg7 { [%eval 0.73] } 3. Nc3 { [%eval 0.47] } 3... c5 { [%eval 0.79] } 4. dxc5 { [%eval 0.66] } 4... Qa5 { [%eval 0.48] } 5. Bd2 { [%eval 0.63] } 5... Qxc5 { [%eval 0.92] } 6. Nf3? { [%eval 0.52] } (6. Nd5 Na6 (6... Nf6 7. Bb4 Qc6 8. Bb5) (6... b6) 7. Nf3 e6 8. Bc3 Bxc3+ 9. Nxc3 d6 (9... Nf6 10. Qd2 O-O 11. O-O-O) 10. Qd2 Nf6 11. O-O-O O-O 12. Qxd6 Qxf2 13. Qf4 Kg7 14. Bxa6 bxa6 15. Qe5 Qb6 16. Rhf1 Qb8 17. Qd4 Qb6 18. Qe5 Qb8 19. Rd6 Kg8 20. Qd4 Ne8 21. Rd8 Qb6 22. Qxb6 axb6 23. Ne5 Bb7 24. Rxa8 Bxa8 25. Nd7 Nd6 26. Rd1 Nb7 27. Nxf8 Kxf8 28. Rd7 Ke8 29. Rc7 Nd8 30. a4 h5 31. h4 f5 32. exf5 gxf5 33. g3 e5 34. Kd2 f4 35. gxf4 exf4 36. Rc4 f3 37. Ke3 Kd7 38. Rd4+ Ke8 39. Rb4 Kd7 40. Rxb6 Nf7 41. Rxa6 Bc6 42. Ra7+ Ke6 43. Nb5 Kd5 { Ponkratov, Pavel - Pridorozhni, Aleksei, 1-0, Wch Rapid, 2013, https://lichess.org/uMCQj8vR }) 6... d6?! { [%eval 1.12] } { Inaccuracy. Nf6 was best. } (6... Nf6 7. Bd3 (7. Be3 Qa5 8. Nd2 Nc6 9. Nb3 Qc7 10. Nd5 Qd8 11. Nxf6+) 7... d6) 7. Bd3?! { [%eval 0.3] } { Inaccuracy. Nd5 was best. } (7. Nd5 Bd7 8. h4 Qc8 9. h5 Nc6 10. Qc1 gxh5 11. c4 Qd8) 7... Nc6?? { [%eval 3.98] } { Blunder. Nf6 was best. } (7... Nf6 8. O-O O-O 9. a4 Bg4 10. h3 Bxf3 11. Qxf3 Qc7 12. Nb5) 8. O-O?? { [%eval 0.47] } { Blunder. Nd5 was best. } (8. Nd5 Bg4 9. b4 Bxf3 10. gxf3 Qd4 11. Rb1 Rc8 12. f4 e6) 8... Be6?! { [%eval 0.97] } 9. Nb5?! { [%eval 0.66] } 9... Ne5?! { [%eval 1.67] } { Inaccuracy. Qb6 was best. } (9... Qb6 10. Be3) 10. Be3 { [%eval 1.76] } 10... Qc8?! { [%eval 1.76] } 11. Nxa7 { [%eval 1.76] } 11... Nxf3+ { [%eval 1.85] } 12. Qxf3 { [%eval 1.73] } 12... Qb8 { [%eval 1.85] } 13. Nb5 { [%eval 1.86] } 13... Bxb2 { [%eval 1.89] } 14. Rab1 { [%eval 1.9] } 14... Be5 { [%eval 2.1] } 15. Bb6 { [%eval 2.31] } 15... Bxa2?! { [%eval 3.26] } { Inaccuracy. Kf8 was best. } (15... Kf8 16. Nc7 Nf6 17. Nxe6+ fxe6 18. Qh3 g5 19. Qxe6 Qc8 20. Qxc8+ Rxc8 21. Be3 Ng4 22. Bxg5) 16. Nc7+ { [%eval 2.9] } 16... Kf8 { [%eval 3.07] } 17. Bb5?! { [%eval 1.96] } { Inaccuracy. Ra1 was best. } (17. Ra1 Bxa1 18. Rxa1 Ra6 19. Rxa2 Rxb6 20. Ra8 Qxa8 21. Nxa8 Rb1+ 22. Bf1 Nf6 23. Nc7 h5) 17... Ra7?! { [%eval 2.83] } { Inaccuracy. Nf6 was best. } (17... Nf6 18. Rb4 d5 19. Nxa8 dxe4 20. Qa3 Bxh2+ 21. Kh1 Bd6 22. c4 Bxb4 23. Qxb4 Qxa8 24. Ra1) 18. c4 { [%eval 2.25] } 18... Nf6 { [%eval 2.19] } 19. Bxa7?? { [%eval 0.29] } { Blunder. Rb4 was best. } (19. Rb4 Kg7 20. Qe3 Ng4 21. Qh3 Bxh2+ 22. Kh1 h5 23. f4 Rc8 24. Qc3+ e5 25. Nd5 Ra8) 19... Qxa7 { [%eval 0.38] } 20. Rb4?! { [%eval 0.0] } 20... Qc5 { [%eval 0.0] } 21. Ra4 { [%eval 0.0] } 21... Qxc7 { [%eval 0.0] } 22. Rxa2 { [%eval 0.0] } 22... Kg7 { [%eval 0.0] } 23. h3 { [%eval -0.02] } 23... Qc5 { [%eval -0.06] } 24. Qd3 { [%eval -0.32] } 24... Qd4?! { [%eval 0.0] } 25. Qxd4 { [%eval 0.0] } 25... Bxd4 { [%eval 0.0] } 26. Re1 { [%eval 0.0] } 26... Rc8 { [%eval 0.0] } 27. Kh1 { [%eval 0.0] } 27... e5?! { [%eval 0.35] } 28. f3 { [%eval 0.47] } 28... h5 { [%eval 0.48] } 29. Rb1? { [%eval -1.16] } { Mistake. h4 was best. } (29. h4 g5) 29... h4! { [%eval -0.98] } 30. Rd1 { [%eval -1.23] } 30... Nh5 { [%eval -1.16] } 31. Kh2? { [%eval -1.14] } 31... Nf4?! { [%eval -0.2] } { Inaccuracy. Ng3 was best. } (31... Ng3 32. Rd3 Bc5 33. Rb3 Kh6 34. Ba4 b6 35. Bd7 Rc7 36. Bb5 f5 37. exf5 gxf5 38. Ra8) 32. g3 { [%eval -0.21] } 32... hxg3+ { [%eval -0.35] } 33. Kxg3 { [%eval -0.15] } 33... Rh8?! { [%eval -0.06] } 34. h4 { [%eval -0.16] } 34... f5 { [%eval 0.0] } 35. Rb1 { [%eval -0.2] } 35... g5 { [%eval 0.0] } 36. Rh1 { [%eval 0.0] } 36... Kf7 { [%eval 0.0] } 37. Rah2?? { [%eval -5.52] } { Blunder. exf5 was best. } (37. exf5 Nh5+ 38. Kg4 Nf6+ 39. Kg3 Nh5+) 37... gxh4+ { [%eval -5.34] } 38. Rxh4 { [%eval -5.29] } 38... Rg8+! { [%eval -5.34] } 39. Rg4 { [%eval -5.29] } 39... Ne2+ { [%eval -5.29] } 40. Kg2 { [%eval -5.26] } 40... Nf4+ { [%eval -5.32] } 41. Kg3 { [%eval -5.23] } 41... fxg4 { [%eval -4.69] } 42. fxg4 { [%eval -5.7] } 42... Kf6 { [%eval -5.3] } { <br /><br
+/>Game may have continued... } (43. Rh7 Ra8 44. g5+ Kxg5 45. Rg7+ Kf6 46. Rxb7 Bc5 { -5.02 }) 0-1
+`
+
+
+let myPuzzles = `
+
+[Result "*"]
 [Event "CT Problem"]
 [Site "Chesstempo.com"]
 [Date "????.??.??"]
@@ -151,6 +208,45 @@ export default `[Result "*"]
 [FEN "5k2/3b4/R5K1/R7/p4r1P/8/8/8 b - - 0 1"]
 
 1...Rxh4 1.Rf6+ ( { +4.35 } 1.Rf6+ Ke8 2.Ra8+ Ke7 3.Rf7+ Kd6 4.Ra6+ Kc5 5.Rxd7 Kb4 6.Rb6+ Ka3 7.Kf5 Rc4 8.Rd3+ Ka2 9.Ke5 Rc5+ 10.Ke4 Rh5 ) ( { +0.16 } 1.Ra7 Be8+ 2.Kf6 Rh6+ 3.Ke5 Rh5+ 4.Kd4 Rh4+ 5.Ke3 Rh3+ 6.Kf2 Rh2+ 7.Kg3 Rd2 8.Rf5+ Kg8 9.Rc5 Rd7 10.Rxd7 Bxd7 ) ( { +0.14 } 1.Rd5 Rg4+ 2.Kf6 Rf4+ 3.Ke5 Rf5+ 4.Kd4 Rf7 5.Kc5 Kg7 6.Rg5+ Kh7 7.Ra8 Rf4 8.Rd5 Rf7 9.Kd6 Kg7 10.Rg5+ ) ( { +0.14 } 1.Kf6 Rh6+ 2.Ke5 Rh7 3.Ra7 Ke8 4.Rd5 Re7+ 5.Kd6 Re6+ 6.Kc5 Re7 7.Rd4 Re5+ 8.Kb4 Re7 9.Rh4 Rf7 10.Re4+ ) ( { +0.14 } 1.Kg5 Rh2 2.Ra7 Rg2+ 3.Kf6 Rf2+ 4.Ke5 Ke8 5.Rd5 Rf5+ 6.Kd6 Rf6+ 7.Kc5 Rf7 8.Rd4 Rf5+ 9.Kb4 Rf7 10.Rb7 ) 1...Ke7 ( { -5.16 } 1...Ke7 2.Rf7+ Kd6 3.Ra6+ Kc5 4.Rxd7 Kb4 5.Rb6+ Kc3 6.Rd1 Rg4+ 7.Kf5 Rg8 8.Rc1+ Kd2 9.Ra1 Rf8+ 10.Ke5 Re8+ 11.Kd4 Rd8+ 12.Kc5 ) ( { -5.16 } 1...Ke8 2.Ra8+ Ke7 3.Rf7+ Kd6 4.Ra6+ Kc5 5.Rxd7 Kb4 6.Rb6+ Kc3 7.Rd1 Rg4+ 8.Kf5 Rg8 9.Rc1+ Kd2 10.Ra1 Rf8+ 11.Ke5 Re8+ 12.Kd4 Rd8+ ) ( { mate -2 } 1...Kg8 2.Ra8+ Be8+ 3.Rxe8# ) 2.Rf7+ ( { +5.06 } 2.Rf7+ Kd6 3.Ra6+ Kc5 4.Rxd7 Kb4 5.Rb6+ Kc3 6.Rd1 Rg4+ 7.Kf5 Rg8 8.Rc1+ Kd2 9.Ra1 Rf8+ 10.Ke5 Re8+ ) ( { +0.08 } 2.Re5+ Kd8 3.Rd5 Rg4+ 4.Kh5 Rc4 5.Rf3 Rc7 6.Kg5 Ra7 7.Ra3 Kc7 8.Rc3+ Bc6 9.Rf5 Kb6 10.Rf6 Rc7 ) ( { +0.05 } 2.Rfa6 Rg4+ 3.Rg5 Be8+ 4.Kh6 Rh4+ 5.Kg7 Re4 6.Rg3 Bb5 7.Rb6 Re5 8.Rb7+ Ke6 9.Rg6+ Kf5 10.Rc7 Ke4 ) ( { +0.04 } 2.Kg7 Rh7+ 3.Kxh7 Kxf6 4.Kh6 Be8 5.Ra7 Ke6 6.Ra8 Bd7 7.Kg5 Kd5 8.Kf4 Bb5 9.Ke3 Bc6 10.Ra7 Kc5 ) ( { +0.04 } 2.Raa6 Rg4+ 3.Kh5 Re4 4.Rfb6 Be6 5.Ra5 Kf7 6.Rba6 Bd7 7.Ra7 Rd4 8.Rf5+ Ke7 9.Kg6 Rg4+ 10.Rg5 ) 2...Kd6 ( { -5.14 } 2...Kd6 3.Ra6+ Kc5 4.Rxd7 Kb4 5.Rb6+ Kc3 6.Rd1 Rg4+ 7.Kf5 Rg8 8.Rc1+ Kd2 9.Ra1 Rf8+ 10.Ke5 Re8+ 11.Kd4 Rd8+ 12.Kc5 Ra8 13.Kb4 Kd3 14.Rxa4 Rxa4+ ) ( { -5.42 } 2...Ke6 3.Ra6+ Ke5 4.Rxd7 Rg4+ 5.Kf7 Rf4+ 6.Ke7 Rb4 7.Rda7 Kd5 8.Rxa4 Rb3 9.R4a5+ Kc6 10.R7a6+ Kb7 11.Kd7 Rc3 12.Rd6 ) ( { -5.42 } 2...Kd8 3.Rd5 Kc7 4.Rfxd7+ Kb6 5.R7d6+ Kc7 6.Ra6 Rh3 7.Re5 Kd8 8.Rxa4 Kd7 9.Rd4+ Kc6 10.Kf5 Rh1 11.Rd2 Rc1 ) ( { mate -2 } 2...Ke8 3.Ra8+ Bc8 4.Rxc8# ) 3.Ra6+ ( { +5.06 } 3.Ra6+ Kc5 4.Rxd7 Kb4 5.Rb6+ Kc3 6.Rd1 Rg4+ 7.Kf5 Rg8 8.Rc1+ Kd2 9.Ra1 Rf8+ 10.Ke5 Re8+ 11.Kd4 ) ( { +0.09 } 3.Rf6+ Ke7 4.Re5+ Kd8 5.Rd5 Rg4+ 6.Kh5 Rg7 7.Kh6 Re7 8.Ra6 Kc8 9.Ra7 Bc6 10.Rxe7 Bxd5 11.Ra7 ) ( { +0.06 } 3.Rf3 Rg4+ 4.Kf7 Be6+ 5.Kf6 Bb3 6.Rd3+ Kc6 7.Rc3+ Kd6 8.Rh3 Rf4+ 9.Kg5 Re4 10.Rh6+ Be6 11.Ra6+ ) ( { +0.06 } 3.Rf1 Re4 4.Rf6+ Be6 5.Rf3 Bb3 6.Kg5 Re5+ 7.Rf5 Rxa5 8.Rxa5 Kc7 9.Kf5 Kb6 10.Ra8 Kb5 ) ( { +0.06 } 3.Rf2 Re4 4.Rd2+ Kc6 5.Rd3 Rg4+ 6.Kf6 Rf4+ 7.Kg5 Rg4+ 8.Kh5 Rf4 9.Ra7 Bf5 10.Kg5 Bxd3 11.Kxf4 ) 3...Kc5 ( { -5.14 } 3...Kc5 4.Rxd7 Kb4 5.Rb6+ Kc3 6.Rd1 Rg4+ 7.Kf5 Rg8 8.Rc1+ Kd2 9.Ra1 Rf8+ 10.Ke5 Re8+ 11.Kd4 Rd8+ 12.Kc5 Ra8 13.Kb4 Kd3 14.Rxa4 Rxa4+ 15.Kxa4 ) ( { -5.31 } 3...Kc7 4.Ra7+ Kb6 5.Rfxd7 Kc5 6.Rdb7 Rb4 7.Rc7+ Kd6 8.Rh7 Rf4 9.Ra6+ Kc5 10.Rha7 Rf8 11.Rxa4 Kd5 12.R7a5+ Kc6 ) ( { -5.31 } 3...Bc6 4.Rf6+ Kd5 5.Rfxc6 Rg4+ 6.Kf5 Rg1 7.Rc7 Rf1+ 8.Kg4 Rg1+ 9.Kf3 Rf1+ 10.Kg2 Rf4 11.Rca7 Rf8 12.Rxa4 Kc5 ) ( { -5.44 } 3...Ke5 4.Rxd7 Rg4+ 5.Kf7 Rf4+ 6.Ke7 Rb4 7.Rda7 Kd5 8.Rxa4 Rb2 9.R4a5+ Ke4 10.Rh5 Kf4 11.Ra4+ Kg3 12.Rg5+ Kf3 ) ( { -5.47 } 3...Kd5 4.Rxd7+ Kc5 5.Rda7 Rh2 6.Rxa4 Kc6 7.R4a6+ Kd5 8.Ra5+ Kc4 9.Rf7 Rg2+ 10.Rg5 Rd2 11.Rf4+ Rd4 12.Rxd4+ Kxd4 ) 4.Rxd7 ( { +5.06 } 4.Rxd7 Kb4 5.Rb6+ Kc3 6.Rd1 Rg4+ 7.Kf5 Rg8 8.Rc1+ Kd2 9.Ra1 Rf8+ 10.Ke5 Re8+ 11.Kd4 Rd8+ 12.Kc5 Ra8 13.Kb4 Kd3 14.Rxa4 Rxa4+ ) ( { +0.04 } 4.Re7 Rg4+ 5.Kf6 Rf4+ 6.Ke5 Rd4 7.Ra5+ Kc4 8.Rh7 Rd3 9.Ra7 Bc6 10.Rh6 Kc5 11.Rc7 Rd5+ 12.Kf4 ) ( { +0.03 } 4.Rf3 Kb5 5.Raf6 Rg4+ 6.Kh5 Re4 7.Rd3 Be6 8.Rf8 Kc5 9.Rg3 Bd5 10.Kg5 Re5+ 11.Kf4 Kd4 ) ( { +0.01 } 4.Ra5+ Kb4 5.Ra8 Rg4+ 6.Kh5 Rd4 7.Rf1 Rd3 8.Rb8+ Kc5 9.Rc1+ Kd5 10.Ra8 Ke5 11.Re1+ Kd5 ) ( { +0.01 } 4.Ra8 Rg4+ 5.Kh5 Rd4 6.Kg5 Rd5+ 7.Kf4 Bc6 8.Ra6 Bb5 9.Raa7 Kb4 10.Ke4 Rh5 11.Rh7 Bc6+ ) *
+
+---
+
+[Result "*"]
+[Event "CT Problem"]
+[Site "Chesstempo.com"]
+[Date "????.??.??"]
+[Round "-"]
+[White "player"]
+[Black "96386"]
+[SetUp "1"]
+[FEN "4r2k/1Q3pbp/3p4/7P/4BqbR/2P1N3/1P3P2/4K3 b - - 0 1"]
+
+1... f5 1.h6 ( { +3.65 } 1.h6 Bxh6 2.Rxg4 Qe5 3.Nxf5 Qxf5 4.Kf1 Rxe4 5.Qa8+ Re8 6.Qxe8+ Bf8 7.Qe4 Qxe4 8.Rxe4 ) ( { -0.02 } 1.Bc6 Rxe3+ 2.fxe3 Qxe3+ 3.Kf1 Be2+ 4.Kg2 Qg5+ 5.Kf2 Qxh4+ 6.Kxe2 Qxh5+ 7.Bf3 Qe8+ ) ( { -0.68 } 1.Bb1 Bh6 2.Kf1 Be2+ 3.Ke1 Qxh4 4.Bxf5 Re7 5.Qa8+ Kg7 6.Kxe2 Qh2 7.Kf1 Bxe3 8.fxe3 ) ( { -0.72 } 1.Bd5 Qg5 2.Rh2 f4 3.h6 Bxc3+ 4.bxc3 fxe3 5.Qg7+ Qxg7 6.hxg7+ Kxg7 7.fxe3 Rxe3+ ) ( { -1.69 } 1.Bh1 Bf6 2.Rxg4 fxg4 3.Bc6 Rf8 4.Be4 Bg7 5.h6 Qxf2+ 6.Kd1 Qg1+ 7.Kc2 Qh2+ ) 1...Bxh6 ( { -3.87 } 1...Bxh6 2.Rxg4 Qe5 3.Nxf5 Qxf5 4.Kf1 Rxe4 5.Qxe4 Qxe4 6.Rxe4 d5 7.Re7 Bc1 8.b4 Bg5 9.Ra7 Bf6 ) ( { -5.18 } 1...Qe5 2.hxg7+ Qxg7 3.Qxg7+ Kxg7 4.Bc6 Re7 5.Kd2 Rc7 6.Bd5 Kg6 7.f3 Kg5 8.Rh1 Bh5 9.f4+ Kg6 10.Be6 Bg4 11.Bxf5+ Bxf5 ) ( { -5.18 } 1...Qg5 2.hxg7+ Qxg7 3.Qxg7+ Kxg7 4.Bc6 Re7 5.Kd2 Rc7 6.Bd5 Kg6 7.f3 Kg5 8.Rh1 Bh5 9.f4+ Kg6 10.Be6 Bg4 11.Bxf5+ Bxf5 ) ( { -6.60 } 1...Bf8 2.Rxg4 Qxh6 3.Nxf5 Qe6 4.Kf1 d5 5.Qxd5 Qxd5 6.Bxd5 h6 7.Bf7 Rd8 8.b4 Kh7 9.Ke2 Rd7 ) ( { -7.05 } 1...Bf6 2.Qf7 Qe5 3.Rxg4 Qe7 4.Qxe7 Bxe7 5.Nxf5 d5 6.Bxd5 Bf6+ 7.Re4 Rxe4+ 8.Bxe4 Be5 9.Ke2 Kg8 ) 2.Rxg4 ( { +3.77 } 2.Rxg4 Qe5 3.Nxf5 Qxf5 4.Kf1 Rxe4 5.Qa8+ Bf8 6.Qxe4 Qxe4 7.Rxe4 Kg7 8.Ke2 Kg6 9.Rg4+ Kf5 ) ( { -0.93 } 2.Rxh6 Qxh6 3.Bc6 Rxe3+ 4.fxe3 Qxe3+ 5.Kf1 f4 6.Kg2 Qe2+ 7.Kg1 Qe1+ 8.Kg2 Qd2+ 9.Kg1 ) ( { -1.06 } 2.Kf1 Rxe4 3.Nxg4 Qc1+ 4.Kg2 Rxg4+ 5.Rxg4 fxg4 6.Qc8+ Kg7 7.Qd7+ Kf6 8.Qxd6+ Kf5 9.Qd5+ ) ( { -2.65 } 2.Nxg4 Qxe4+ 3.Qxe4 Rxe4+ 4.Kd1 Bg5 5.Rh5 Rxg4 6.b4 Kg7 7.b5 Rg1+ 8.Kc2 Rg2 9.b6 ) ( { -3.31 } 2.Bf3 Rxe3+ 3.fxe3 Qxe3+ 4.Kf1 Bxf3 5.Qc8+ Kg7 6.Qd7+ Kg8 7.Qb5 Bf8 8.Rd4 Qg5 9.Kf2 ) *
+
+---
+
+[Result "*"]
+[Event "CT Problem"]
+[Site "Chesstempo.com"]
+[Date "????.??.??"]
+[Round "-"]
+[White "player"]
+[Black "136855"]
+[SetUp "1"]
+[FEN "6k1/4N1p1/8/5p2/3Pp3/2p1P1P1/4K2n/8 b - - 0 1"]
+
+1...Kf7 1.Nxf5 ( { -0.27 } 1.Nxf5 Nf1 2.Kd1 Kf6 3.Nd6 Nxg3 4.Nb5 c2+ 5.Kxc2 Nf1 6.Nd6 Nxe3+ 7.Kb3 Ke6 8.Nxe4 Kd5 9.Ng5 Nf5 10.Kc3 Nxd4 ) ( { -2.09 } 1.Nd5 c2 2.Kd2 Nf1+ 3.Kxc2 Ke6 4.Nf4+ Kd6 5.Ng2 Nxg3 6.Kd2 g5 7.Ke1 Nh5 8.Kf2 f4 9.exf4 gxf4 10.Nxf4 Nxf4 11.Ke3 Kd5 12.Kxf4 ) ( { -4.15 } 1.Nc6 Nf1 2.Nb4 Nxg3+ 3.Kd1 Ke6 4.Na6 Nf1 5.Nc7+ Kd6 6.Nb5+ Kc6 7.Nxc3 Nxe3+ 8.Ke2 Nd5 9.Na4 g5 10.Nc5 g4 ) ( { -8.54 } 1.Nc8 Nf1 2.Kd1 Nxe3+ 3.Kc1 Nc4 4.Kc2 e3 5.Nd6+ Kf6 6.Kd3 c2 7.Nxc4 c1=Q 8.Nxe3 Qg1 9.Nd5+ Kf7 10.g4 Qxg4 ) ( { -11.81 } 1.Kd1 Kxe7 2.Kc2 Ng4 3.d5 Nxe3+ 4.Kxc3 Nf1 5.Kd4 Nxg3 6.Ke3 Kd6 7.Kf2 f4 8.Kg2 Kxd5 9.Kf2 e3+ 10.Kg2 ) 1...Nf1 ( { +0.07 } 1...Nf1 2.Kd1 g6 3.Nd6+ Ke6 4.Nxe4 Nxe3+ 5.Kc1 c2 6.Nc3 Kf6 7.Kd2 Kf5 8.d5 Ke5 9.d6 Kxd6 10.Ne2 Nf5 11.Kxc2 Ke5 12.Kd2 g5 ) ( { 0.00 } 1...c2 2.Kd2 Ng4 3.Kxc2 Ke6 4.Nxg7+ Kf6 5.Ne8+ Ke7 6.Nc7 Nxe3+ 7.Kc3 Kd6 8.Nb5+ Kc6 9.Kb4 Nd5+ 10.Kc4 Ne3+ 11.Kb4 ) ( { 0.00 } 1...Ke6 2.Nxg7+ Kd5 3.Nf5 Ke6 4.Ng7+ ) ( { 0.00 } 1...Kg6 2.Ne7+ Kf7 3.Nf5 ) ( { 0.00 } 1...Ng4 2.Nd6+ Kg6 3.Nxe4 c2 4.Kd2 Nxe3 5.g4 Kf7 6.Nc3 Ke6 7.Ne2 Nxg4 8.Kxc2 g5 9.Kd3 Nf6 10.Ke3 g4 11.Kf4 Kd6 12.Kf5 Ke7 13.d5 Nxd5 14.Kxg4 Ne3+ 15.Kf3 ) 2.Kd1 ( { -0.22 } 2.Kd1 Kf6 3.g4 g6 4.Nd6 Nxe3+ 5.Kc1 Ke6 6.Nxe4 Kd5 7.Nxc3+ Kxd4 8.Ne2+ Ke5 9.g5 Kf5 10.Kd2 Nd5 11.Nd4+ ) ( { -7.30 } 2.Nd6+ Ke7 3.Kxf1 c2 4.Nxe4 c1=Q+ 5.Ke2 Qc4+ 6.Kf2 Qa2+ 7.Kf3 Qd5 8.Kf4 Qf7+ 9.Ke5 Qe6+ 10.Kf4 g6 11.g4 g5+ 12.Nxg5 Qf6+ 13.Ke4 Qxg5 ) ( { -7.43 } 2.Kxf1 c2 3.Nd6+ Ke7 4.Nxe4 c1=Q+ 5.Kf2 g5 6.Ke2 Qc4+ 7.Kd2 Qa2+ 8.Kc3 Qe2 9.Nc5 Qxe3+ 10.Kc2 Qxd4 11.Nd3 ) ( { -9.49 } 2.g4 c2 3.Ng3 c1=Q 4.Nxf1 Kg6 5.d5 Qc2+ 6.Ke1 Kg5 7.Nd2 Qd3 8.Kd1 Qxd5 9.Ke1 Qd3 10.Nf1 Kxg4 11.Kf2 ) ( { -11.35 } 2.d5 c2 3.Kxf1 c1=Q+ 4.Ke2 Qc2+ 5.Ke1 Qc3+ 6.Ke2 Qd3+ 7.Ke1 g6 8.Nh4 Qxe3+ 9.Kf1 Qxg3 10.Ng2 e3 11.Kg1 e2 12.Kh1 e1=Q+ 13.Nxe1 Qxe1+ ) *
+
+`
+
+export default `
+
+${myGames}
+
+---
+
+${myPuzzles}
+
 `.split("---").map((pgn) => new Game(pgn))
 
 /*

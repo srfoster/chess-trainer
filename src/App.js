@@ -3,8 +3,6 @@ TODO:
 
 * Add a button to start/stop the audio trainer
 
-* Tabs to toggle between notations 
-
 * Mind palace features: Show numbers on the square for each move in the "db"
   - 
 
@@ -22,6 +20,8 @@ import Switch from '@mui/material/Switch';
 
 import * as util from './util.js'
 import games from './games.js' 
+
+import { Tab, Tabs } from '@mui/material';
 
 function App() {
   return (
@@ -97,7 +97,7 @@ function AuditoryTrainer({ games }) {
       setMove((s) => {
         if(s >= games[selectedGame].moves().length) {
           console.log(games[selectedGame].timesPlayed, games[selectedGame].moves().length ) 
-          if (games[selectedGame].timesPlayed * games[selectedGame].moves().length < 20) {
+          if (games[selectedGame].timesPlayed * games[selectedGame].moves().length < 10) {
             games[selectedGame].timesPlayed++
           } else {
             games[selectedGame].timesPlayed = 0 //Gross stateful stuff
@@ -120,7 +120,7 @@ function AuditoryTrainer({ games }) {
         setSelectedGame(e.target.value)
         setMove(-1)
       }}>
-        {Object.keys(games).map(k => <option key={k} value={k}>{k}</option>)}
+        {Object.keys(games).map(k => <option key={k} value={k}>({ rate * (games[k].moves().length + 2) }s) {k}</option>)}
       </select>
 
       <p>Current Square: {pictureMode ? util.pictureNotation(move) : currentMove}</p>
@@ -138,35 +138,79 @@ function AuditoryTrainer({ games }) {
 
       {games[selectedGame].chess.getComments().find((c) => c.fen == games[selectedGame].fens()[move])?.comment}
 
-      <Chessboard id="LiveBoard" position={ 
-        games[selectedGame].fens()[move]
+      <Chessboard id="LiveBoard"
+        boardOrientation={
+          selectedGame.startsWith("player") ? "white" : "black"
+         }
+        position={ 
+        games[selectedGame].fens()[move < 0 ? 0 : move]
       }></Chessboard>
 
        
-      <GameDisplay game={ games[selectedGame]}></GameDisplay>
+      <GameDisplay game={games[selectedGame]} move={ move}></GameDisplay>
 
     </>
   )
 }
 
-function GameDisplay({ game }) {
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      {...other}
+    >
+      {value === index && (
+        <>{children}</>
+      )}
+    </div>
+  );
+}
+
+
+function GameDisplay({ game, move }) {
+  const [tabValue, setTabValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setTabValue(newValue);
+  };
+
   return (
     <>
-      <MovesDisplay moves={game.moves()} />
-      <MovesDisplay moves={game.longMoves()} />
-      <MovesDisplay moves={game.pictureMoves()}
-        wrapper={(m) => <Chip label={m} />}
-      />
-      <MovesDisplay moves={game.pictureMoveWords()}
-        wrapper={(m) => <Chip label={m ? m.join(" ") : m} />}
-      />
+      <Tabs value={tabValue} onChange={handleChange}>
+        <Tab label="Moves" />
+        <Tab label="Long Moves" />
+        <Tab label="Picture Moves" />
+        <Tab label="Picture Move Words" />
+      </Tabs>
+      <TabPanel value={tabValue} index={0}>
+        <MovesDisplay moves={game.moves()} move={move} />
+      </TabPanel>
+      <TabPanel value={tabValue} index={1}>
+        <MovesDisplay moves={game.longMoves()} move={move} />
+      </TabPanel>
+      <TabPanel value={tabValue} index={2}>
+        <MovesDisplay moves={game.pictureMoves()} move={move}
+          wrapper={(m) => <Chip label={m} />}
+        />
+      </TabPanel>
+      <TabPanel value={tabValue} index={3}>
+        <MovesDisplay moves={game.pictureMoveWords()} move={move}
+          wrapper={(m) => <Chip label={m ? m.join(" ") : m} />}
+        />
+      </TabPanel>
     </>
-  )
+  );
 }
 
-function MovesDisplay({ moves, wrapper }) {
+function MovesDisplay({ move, moves, wrapper }) {
   if (!wrapper) wrapper = (m) => <span>{m}</span>
-  return <p>{util.groupInPairs(moves).map((pair, i) => <div>{i + 1}. {wrapper(pair[0])} {wrapper(pair[1])}</div>)}</p>
+  return <p>{util.groupInPairs(moves).map((pair, i) => {
+    console.log("Move", move, i)
+    return <div style={{ border: i == Math.floor(move/2) ? "1px solid black" : "none"}}>{i + 1}. {wrapper(pair[0])} {wrapper(pair[1])}</div>
+  })}</p>
 }
 
 function SquareSearch() {
