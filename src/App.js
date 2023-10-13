@@ -52,6 +52,12 @@ function AuditoryTrainer({ games }) {
   let [lastSquareChange, setLastSquareChange] = React.useState()
   let [pictureMode, setPictureMode] = React.useState(false)
 
+  let nextGame = () => {
+    let keys = Object.keys(games)
+    let index = keys.indexOf(selectedGame)
+    return keys[(index + 1) % keys.length]
+  }
+
   const handleChange = (event, newValue) => {
     setRate(newValue)
   };
@@ -66,7 +72,7 @@ function AuditoryTrainer({ games }) {
 
   React.useEffect(() => {
     //Speak the current one
-    if (move === undefined) return
+    if (move === undefined || currentMove === undefined) return
     utterance.lang = 'en-US'
     utterance.voice = window.speechSynthesis.getVoices()[move % 2 + 1]
     utterance.rate = pictureMode ? 1 : 2
@@ -81,9 +87,27 @@ function AuditoryTrainer({ games }) {
   React.useEffect(() => {
     //Set a timeout to chang the move
     if(timeout) clearInterval(timeout)
+    let firstTime = true;
     timeout = setInterval(() => {
-      setMove((s)=>(s+1)%games[selectedGame].moves().length)
+      if (firstTime) {
+        firstTime = false
+        return
+      }
       setLastSquareChange(new Date())
+      setMove((s) => {
+        if(s >= games[selectedGame].moves().length) {
+          console.log(games[selectedGame].timesPlayed, games[selectedGame].moves().length ) 
+          if (games[selectedGame].timesPlayed * games[selectedGame].moves().length < 30) {
+            games[selectedGame].timesPlayed++
+          } else {
+            setSelectedGame(nextGame())
+          }
+
+          return -1
+        } else {
+          return s+1
+        }
+      })
     }, rate*1000);
     return () => clearInterval(timeout);
   }, [rate,selectedGame]);
@@ -91,7 +115,7 @@ function AuditoryTrainer({ games }) {
   return (
     <>
       <p>Auditory Trainer, every {rate} seconds</p>
-      <select onChange={(e) => {
+      <select value={selectedGame} onChange={(e) => {
         setSelectedGame(e.target.value)
         setMove(-1)
       }}>
@@ -100,6 +124,7 @@ function AuditoryTrainer({ games }) {
 
       <p>Current Square: {pictureMode ? util.pictureNotation(move) : currentMove}</p>
       <Button onClick={ ()=>setMove(-1)}>Restart</Button>
+      <Button onClick={() => { setMove(-1); setSelectedGame(nextGame()) }}>Next</Button>
       <Slider value={rate} onChange={handleChange}
         valueLabelDisplay='off'
         marks={[{value: 1, label: '1s'}, {value: 2, label: '2s'}, {value: 3, label: '3s'}, {value: 4, label: '4s'}, {value: 5, label: '5s'}, {value: 6, label: '6s'}, {value: 7, label: '7s'}, {value: 8, label: '8s'}, {value: 9, label: '9s'}, {value: 10, label: '10s'}]}
@@ -110,6 +135,7 @@ function AuditoryTrainer({ games }) {
         setPictureMode(event.target.checked)
       }} />
 
+      {games[selectedGame].chess.getComments().find((c) => c.fen == games[selectedGame].fens()[move])?.comment}
 
       <Chessboard id="LiveBoard" position={ 
         games[selectedGame].fens()[move]

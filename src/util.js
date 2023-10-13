@@ -155,6 +155,7 @@ export class Game {
     _moves = []
     _longMoves = []
     _fens = []
+    timesPlayed = 0
     constructor(pgn) {
         //this._moves = pgnToSquares(pgn)
 
