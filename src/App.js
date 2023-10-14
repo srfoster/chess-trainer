@@ -195,7 +195,7 @@ function ChessTrainer({ games }) {
 
       <Chessboard id="LiveBoard"
         boardOrientation={
-          (!selectedGame.includes("player") && selectedGame.startsWith("player")) ? "white" : "black"
+          (!selectedGame.includes("player") || selectedGame.startsWith("player")) ? "white" : "black"
          }
         position={ 
         games[selectedGame].fens()[move < 0 ? 0 : move]
