@@ -1,6 +1,9 @@
 /*
 TODO:
 
+* Multiplex between different types of trainers, not just chess.
+  - Started a Spanish trainer, but it sucks (no good spanish tts atm) -- Kinda works in chrome.  Doesn't always play on page load
+
 * "Playlists" by playtime (e.g. totals to 30 minutes, etc)
   - Might want to be able to change this dynamically so that the playtime fits my workout...
 
@@ -23,17 +26,30 @@ import { Chessboard } from "react-chessboard";
 import Switch from '@mui/material/Switch';
 
 import * as util from './util.js'
-import games from './games.js' 
 
 import { Tab, Tabs } from '@mui/material';
 
+import games from './data/chess-db.js' 
+import spanishParas from './data/spanish-db.js' 
+
 function App() {
+  let [thingIndex, setThingIndex] = React.useState(0)
+
+  let app
+  if (thingIndex == 0) {
+    app = <ChessTrainer games={ games } />
+  } 
+  if (thingIndex == 1) {
+    app = <SpanishTrainer texts={ spanishParas } />
+  } 
+
   return (
     <Container maxWidth="sm">
       <h1>
         Welcome to Stephen R. Foster's Chess apps
       </h1>
-      <AuditoryTrainer games={ games } />
+
+      {app}
       
       <Chessboard id="BasicBoard" customSquare={(squareData, b, c) => {
         return <div style={{ width: 50, height: 50 }}>{util.icon(squareData.square) }</div>
@@ -47,9 +63,44 @@ function App() {
 
 
 //TODO: These should not be out here.  Use refs.
+let spanishUtterance = new SpeechSynthesisUtterance()
+let spanishTimeout
+function SpanishTrainer({ texts }) {
+  let [rate, setRate] = React.useState(1)
+  let [selectedText, setSelectedText] = React.useState(0)
+  let [lastTextChange, setLastTextChange] = React.useState()
+
+  let currentText = texts[Object.keys(texts)[selectedText]]
+
+  let nextText = () => {
+    let keys = Object.keys(texts)
+    let index = keys.indexOf(selectedText)
+    return keys[(index + 1) % keys.length]
+  }
+
+  React.useEffect(() => {
+    //Speak the current one
+    spanishUtterance.lang = 'es-MX'
+    spanishUtterance.voice = window.speechSynthesis.getVoices().find((v)=>v.lang.startsWith("es"))
+    spanishUtterance.rate = 1
+    spanishUtterance.text = currentText
+    window.speechSynthesis.speak(spanishUtterance)
+    spanishUtterance.onend = () => {
+      setLastTextChange(new Date())
+      setSelectedText((s) => { return (s + 1) % Object.keys(texts).length})
+    }
+    console.log("speak", spanishUtterance) 
+  }, [lastTextChange]);
+
+
+  return (texts[Object.keys(texts)[selectedText]])
+}
+
+
+//TODO: These should not be out here.  Use refs.
 let utterance = new SpeechSynthesisUtterance()
 let timeout
-function AuditoryTrainer({ games }) {
+function ChessTrainer({ games }) {
   let [rate, setRate] = React.useState(2)
   let [selectedGame, setSelectedGame] = React.useState(Object.keys(games)[0])
   let [move, setMove] = React.useState(0)
@@ -144,7 +195,7 @@ function AuditoryTrainer({ games }) {
 
       <Chessboard id="LiveBoard"
         boardOrientation={
-          (!selectedGame.includes("player") || selectedGame.startsWith("player")) ? "white" : "black"
+          (!selectedGame.includes("player") && selectedGame.startsWith("player")) ? "white" : "black"
          }
         position={ 
         games[selectedGame].fens()[move < 0 ? 0 : move]

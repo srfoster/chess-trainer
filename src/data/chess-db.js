@@ -1,4 +1,4 @@
-import { Game } from "./util";
+import { Game } from "../util";
 
 let myGames = `
 
@@ -52,6 +52,34 @@ Doing all of this was tiring, which is why I could only manage a few moves each 
 Also, how should we have proceeded then?? }
 1. d4 { [%eval 0.0] } 1... g6?! { [%eval 0.68] } { Inaccuracy. Nf6 was best. } (1... Nf6 2. c4 e6 3. Nf3 d5 4. cxd5 exd5 5. Bf4 c6 6. Nc3) 2. e4 { [%eval 0.68] } 2... Bg7 { [%eval 0.73] } 3. Nc3 { [%eval 0.47] } 3... c5 { [%eval 0.79] } 4. dxc5 { [%eval 0.66] } 4... Qa5 { [%eval 0.48] } 5. Bd2 { [%eval 0.63] } 5... Qxc5 { [%eval 0.92] } 6. Nf3? { [%eval 0.52] } (6. Nd5 Na6 (6... Nf6 7. Bb4 Qc6 8. Bb5) (6... b6) 7. Nf3 e6 8. Bc3 Bxc3+ 9. Nxc3 d6 (9... Nf6 10. Qd2 O-O 11. O-O-O) 10. Qd2 Nf6 11. O-O-O O-O 12. Qxd6 Qxf2 13. Qf4 Kg7 14. Bxa6 bxa6 15. Qe5 Qb6 16. Rhf1 Qb8 17. Qd4 Qb6 18. Qe5 Qb8 19. Rd6 Kg8 20. Qd4 Ne8 21. Rd8 Qb6 22. Qxb6 axb6 23. Ne5 Bb7 24. Rxa8 Bxa8 25. Nd7 Nd6 26. Rd1 Nb7 27. Nxf8 Kxf8 28. Rd7 Ke8 29. Rc7 Nd8 30. a4 h5 31. h4 f5 32. exf5 gxf5 33. g3 e5 34. Kd2 f4 35. gxf4 exf4 36. Rc4 f3 37. Ke3 Kd7 38. Rd4+ Ke8 39. Rb4 Kd7 40. Rxb6 Nf7 41. Rxa6 Bc6 42. Ra7+ Ke6 43. Nb5 Kd5 { Ponkratov, Pavel - Pridorozhni, Aleksei, 1-0, Wch Rapid, 2013, https://lichess.org/uMCQj8vR }) 6... d6?! { [%eval 1.12] } { Inaccuracy. Nf6 was best. } (6... Nf6 7. Bd3 (7. Be3 Qa5 8. Nd2 Nc6 9. Nb3 Qc7 10. Nd5 Qd8 11. Nxf6+) 7... d6) 7. Bd3?! { [%eval 0.3] } { Inaccuracy. Nd5 was best. } (7. Nd5 Bd7 8. h4 Qc8 9. h5 Nc6 10. Qc1 gxh5 11. c4 Qd8) 7... Nc6?? { [%eval 3.98] } { Blunder. Nf6 was best. } (7... Nf6 8. O-O O-O 9. a4 Bg4 10. h3 Bxf3 11. Qxf3 Qc7 12. Nb5) 8. O-O?? { [%eval 0.47] } { Blunder. Nd5 was best. } (8. Nd5 Bg4 9. b4 Bxf3 10. gxf3 Qd4 11. Rb1 Rc8 12. f4 e6) 8... Be6?! { [%eval 0.97] } 9. Nb5?! { [%eval 0.66] } 9... Ne5?! { [%eval 1.67] } { Inaccuracy. Qb6 was best. } (9... Qb6 10. Be3) 10. Be3 { [%eval 1.76] } 10... Qc8?! { [%eval 1.76] } 11. Nxa7 { [%eval 1.76] } 11... Nxf3+ { [%eval 1.85] } 12. Qxf3 { [%eval 1.73] } 12... Qb8 { [%eval 1.85] } 13. Nb5 { [%eval 1.86] } 13... Bxb2 { [%eval 1.89] } 14. Rab1 { [%eval 1.9] } 14... Be5 { [%eval 2.1] } 15. Bb6 { [%eval 2.31] } 15... Bxa2?! { [%eval 3.26] } { Inaccuracy. Kf8 was best. } (15... Kf8 16. Nc7 Nf6 17. Nxe6+ fxe6 18. Qh3 g5 19. Qxe6 Qc8 20. Qxc8+ Rxc8 21. Be3 Ng4 22. Bxg5) 16. Nc7+ { [%eval 2.9] } 16... Kf8 { [%eval 3.07] } 17. Bb5?! { [%eval 1.96] } { Inaccuracy. Ra1 was best. } (17. Ra1 Bxa1 18. Rxa1 Ra6 19. Rxa2 Rxb6 20. Ra8 Qxa8 21. Nxa8 Rb1+ 22. Bf1 Nf6 23. Nc7 h5) 17... Ra7?! { [%eval 2.83] } { Inaccuracy. Nf6 was best. } (17... Nf6 18. Rb4 d5 19. Nxa8 dxe4 20. Qa3 Bxh2+ 21. Kh1 Bd6 22. c4 Bxb4 23. Qxb4 Qxa8 24. Ra1) 18. c4 { [%eval 2.25] } 18... Nf6 { [%eval 2.19] } 19. Bxa7?? { [%eval 0.29] } { Blunder. Rb4 was best. } (19. Rb4 Kg7 20. Qe3 Ng4 21. Qh3 Bxh2+ 22. Kh1 h5 23. f4 Rc8 24. Qc3+ e5 25. Nd5 Ra8) 19... Qxa7 { [%eval 0.38] } 20. Rb4?! { [%eval 0.0] } 20... Qc5 { [%eval 0.0] } 21. Ra4 { [%eval 0.0] } 21... Qxc7 { [%eval 0.0] } 22. Rxa2 { [%eval 0.0] } 22... Kg7 { [%eval 0.0] } 23. h3 { [%eval -0.02] } 23... Qc5 { [%eval -0.06] } 24. Qd3 { [%eval -0.32] } 24... Qd4?! { [%eval 0.0] } 25. Qxd4 { [%eval 0.0] } 25... Bxd4 { [%eval 0.0] } 26. Re1 { [%eval 0.0] } 26... Rc8 { [%eval 0.0] } 27. Kh1 { [%eval 0.0] } 27... e5?! { [%eval 0.35] } 28. f3 { [%eval 0.47] } 28... h5 { [%eval 0.48] } 29. Rb1? { [%eval -1.16] } { Mistake. h4 was best. } (29. h4 g5) 29... h4! { [%eval -0.98] } 30. Rd1 { [%eval -1.23] } 30... Nh5 { [%eval -1.16] } 31. Kh2? { [%eval -1.14] } 31... Nf4?! { [%eval -0.2] } { Inaccuracy. Ng3 was best. } (31... Ng3 32. Rd3 Bc5 33. Rb3 Kh6 34. Ba4 b6 35. Bd7 Rc7 36. Bb5 f5 37. exf5 gxf5 38. Ra8) 32. g3 { [%eval -0.21] } 32... hxg3+ { [%eval -0.35] } 33. Kxg3 { [%eval -0.15] } 33... Rh8?! { [%eval -0.06] } 34. h4 { [%eval -0.16] } 34... f5 { [%eval 0.0] } 35. Rb1 { [%eval -0.2] } 35... g5 { [%eval 0.0] } 36. Rh1 { [%eval 0.0] } 36... Kf7 { [%eval 0.0] } 37. Rah2?? { [%eval -5.52] } { Blunder. exf5 was best. } (37. exf5 Nh5+ 38. Kg4 Nf6+ 39. Kg3 Nh5+) 37... gxh4+ { [%eval -5.34] } 38. Rxh4 { [%eval -5.29] } 38... Rg8+! { [%eval -5.34] } 39. Rg4 { [%eval -5.29] } 39... Ne2+ { [%eval -5.29] } 40. Kg2 { [%eval -5.26] } 40... Nf4+ { [%eval -5.32] } 41. Kg3 { [%eval -5.23] } 41... fxg4 { [%eval -4.69] } 42. fxg4 { [%eval -5.7] } 42... Kf6 { [%eval -5.3] } { <br /><br
 />Game may have continued... } (43. Rh7 Ra8 44. g5+ Kxg5 45. Rg7+ Kf6 46. Rxb7 Bc5 { -5.02 }) 0-1
+
+---
+
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.10.14"]
+[Round "-"]
+[White "player"]
+[Black "reimerzambrano"]
+[Result "0-1"]
+[WhiteElo "1811"]
+[BlackElo "1854"]
+[TimeControl "900+10"]
+[Termination "reimerzambrano won by checkmate"]
+[UTCDate "2023.10.14"]
+[UTCTime "17:34:50"]
+[Variant "Standard"]
+[ECO "D31"]
+[Opening "Queen's Gambit Declined: Queen's Knight Variation"]
+[Annotator "https://lichess.org/@/stephenfoster"]
+
+1. d4 { [%eval 0.0] } 1... d5 { [%eval 0.27] } 2. c4 { [%eval 0.29] } 2... e6 { [%eval 0.3] } 3. Nc3 { [%eval 0.39] } 3... h6 { [%eval 0.45] } 4. cxd5 { [%eval 0.44] } (4. Nf3 Nf6 5. Bf4 Bd6 6. Bxd6 Qxd6 7. e3 O-O 8. Rc1 (8. c5 Qe7 9. Be2 c6 10. b4 Nfd7 11. e4 b6 12. O-O Bb7) 8... a6) 4... exd5 { [%eval 0.37] } 5. Nf3 { [%eval 0.15] } 5... Nf6 { [%eval 0.4] } 6. g3?! { [%eval -0.28] } { Inaccuracy. Bf4 was best. } (6. Bf4 c6 (6... Bd6 7. Bxd6 Qxd6 8. e3 O-O 9. Bd3 Bg4 10. h3 Bxf3 11. Qxf3 Re8 12. O-O c6) 7. Qb3 Nh5 8. Be5 Nd7 9. e3 Be7 10. Bd3 Nhf6) 6... Bb4 { [%eval -0.06] } 7. Bg2 { [%eval -0.2] } 7... O-O { [%eval -0.25] } 8. O-O { [%eval -0.16] } 8... Bg4?! { [%eval 0.63] } { Inaccuracy. Re8 was best. } (8... Re8 9. Ne5) 9. Qb3 { [%eval 0.32] } (9. Ne5 Be6 10. Qb3 a5 11. a3 Bxc3 12. bxc3 Qc8 13. Rb1) 9... Nc6 { [%eval 0.2] } 10. Ne5 { [%eval 0.32] } 10... Bxc3 { [%eval 0.29] } 11. Nxg4 { [%eval 0.24] } 11... Bxd4 { [%eval 0.35] } 12. Nxf6+ { [%eval 0.35] } 12... Qxf6 { [%eval 0.22] } 13. e3 { [%eval 0.22] } 13... Bb6 { [%eval 0.28] } 14. Bd2?! { [%eval -0.75] } { Inaccuracy. Qxd5 was best. } (14. Qxd5 Rad8 15. Qf3 Qg6 16. Qe4 Qh5 (16... Qf6 17. Qc2 Ne5 18. Rb1 Nf3+ 19. Kh1 Qg6 20. Qxg6 fxg6 21. b3 c6 22. Rb2 g5 23. h3 Kh7 24. Re2 Rd3 25. Rc2 Rd7 26. Ba3 Rff7 27. Bb4 h5 28. g4) 17. Bf3 Qc5 18. b4 Qxb4 19. Qxb4 Nxb4 20. Bxb7 c6) 14... d4 { [%eval -0.59] } 15. e4?! { [%eval -1.21] } { Inaccuracy. Rac1 was best. } (15. Rac1) 15... Rad8 { [%eval -0.97] } 16. Rac1?! { [%eval -1.14] } 16... Rfe8 { [%eval -0.97] } 17. Kh1 { [%eval -1.02] } 17... d3 { [%eval -0.89] } 18. f4 { [%eval -0.89] } 18... Nd4?! { [%eval -0.53] } 19. Qxd3 { [%eval -0.48] } 19... Qg6?! { [%eval 0.0] } 20. Qb1?? { [%eval -4.54] } { Blunder. Rcd1 was best. } (20. Rcd1 Qe6 21. Qb1 c6 22. Be3 Rd7 23. Bg1 Red8 24. Rde1 Qg4 25. f5 Qh5 26. Bxd4 Rxd4) 20... Qg4?? { [%eval 0.0] } { Blunder. Ne2 was best. } (20... Ne2 21. Be1 Nxc1 22. Qxc1 Rxe4 23. Bc3 Re3 24. Be5 c6 25. f5 Qg4 26. Bc7 Rde8 27. Bxb6) 21. Bc3 { [%eval -0.01] } 21... Ne2 { [%eval 0.0] } 22. Bf3! { [%eval 0.0] } 22... Nxg3+?? { [%eval 3.11] } { Blunder. Nxc3 was best. } (23. Kg2 { +3.27 }) (22... Nxc3 23. bxc3 Qe6 24. Rcd1 c6 25. e5 g6 26. Kg2 Rxd1 27. Bxd1 Qc4 28. Bb3 Qe2+ 29. Kh3) 23. hxg3?? { [%eval #-1] } { Checkmate is now unavoidable. Kg2 was best. } (23. Kg2 Qxf4 24. hxg3 Qg5 25. Rcd1 Be3 26. Qc2 Bf4 27. Qf2 Be5 28. Be2 Rxd1 29. Bxd1 f6) 23... Qh3# { 0-1 Black wins. } 0-1
+
+
+
+
+
+
 `
 
 
@@ -339,9 +367,29 @@ let otherGames = `
 
 1. e4 c5 2. Nf3 g6 3. d4 Bg7 4. dxc5 Qa5+ { B27 Pterodactyl Defense: Western, Rhamphorhynchus } 5. Bd2 Qxc5 6. Nc3 Nf6 7. Be3 Qa5 8. Qd2 Nc6 9. Bc4 O-O 10. Bb3 b5 11. Nd5 Qxd2+ 12. Nxd2 Nxd5 13. exd5 Nd4 14. O-O-O Bb7 15. Rhe1 Nxb3+ 16. Nxb3 e6 17. dxe6 dxe6 18. f3 Bd5 19. Bd4 f6 20. Nc5 Kf7 21. Na6 Rfc8 22. Nb4 Bb7 23. Bb6 Ke7 24. Ba5 Bh6+ 25. Kb1 a6 26. Rd3 Bc6 27. Bd8+ Kf7 28. Nxc6 Rxc6 29. Rd7+ Kg8 30. Bxf6 Rac8 31. c3 b4 32. Re4 bxc3 33. Bxc3 Bf8 34. Rh4 h5 35. Rf4 e5 36. Rff7 Ba3 37. f4 exf4 38. Rh7 Rxc3 39. bxc3 Rxc3 40. Rdg7+ Kf8 41. Rc7 Rxc7 42. Rxc7 a5 43. Kc2 Bd6 44. Rd7 Be7 45. Ra7 { Black resigns. } 1-0
 
+---
+
+[Event "Maribor"]
+[Site "Maribor"]
+[Date "1977.??.??"]
+[Round "11"]
+[White "Barle, Janez"]
+[Black "Forintos, Gyozo V"]
+[Result "1-0"]
+[WhiteElo "2450"]
+[BlackElo "2450"]
+[Variant "Standard"]
+[TimeControl "-"]
+[ECO "B06"]
+[Opening "Pterodactyl Defense: Eastern, Pterodactyl"]
+[Termination "Normal"]
+[Annotator "lichess.org"]
+
+1. e4 g6 2. d4 Bg7 3. Nc3 c5 4. dxc5 Qa5 { B06 Pterodactyl Defense: Eastern, Pterodactyl } 5. Bd2 Qxc5 6. Nd5 Na6 7. Nf3 e6 8. Bc3 Bxc3+? { (0.73 → 1.91) Mistake. Kf8 was best. } (8... Kf8 9. Bxg7+ Kxg7 10. Nc3 Nc7 11. Qd4+ Qxd4 12. Nxd4 d5 13. exd5 exd5 14. O-O-O Nf6 15. Be2) 9. Nxc3 Nf6 10. Qd2 O-O 11. O-O-O Ng4 12. Bxa6 bxa6 13. Rhf1 f6 14. Qd6? { (3.10 → 1.33) Mistake. h3 was best. } (14. h3 Ne5 15. Nxe5 Qxe5 16. f4 Qc5 17. Rf3 Rb8 18. Rd3 a5 19. a3 Rb7 20. g4 Rc7) 14... Qxd6 15. Rxd6 Kf7 16. h3 Ke7 17. Rd2 Ne5?! { (0.99 → 1.67) Inaccuracy. Nh6 was best. } (17... Nh6 18. Nd4 Rb8 19. Nb3 Rb7 20. Na5 Rc7 21. Re1 Nf7 22. Nd1 g5 23. Ne3 h5 24. f3) 18. Nxe5 fxe5 19. Rfd1 Rd8 20. Na4 d6 21. b3 Bb7 22. f3 Rac8 23. Nb2 d5 24. exd5 exd5 25. Re1 Kf6 26. c4?! { (1.37 → 0.38) Inaccuracy. Rde2 was best. } (26. Rde2 Re8) 26... a5 27. Red1 Re8 28. Kb1 d4 29. Nd3 a4 30. Re1 e4 31. fxe4 Bxe4 32. Rf1+ Kg7 33. Rf4?! { (0.57 → 0.00) Inaccuracy. Kb2 was best. } (33. Kb2 a5) 33... Bxd3+?! { (0.00 → 0.78) Inaccuracy. axb3 was best. } (33... axb3 34. axb3 a5 35. Kb2 a4 36. Nc1 axb3 37. Rxd4 Bxg2 38. Rd7+ Kg8 39. Rff7 Rxc4 40. Rg7+) 34. Rxd3 Re2 35. Rfxd4 axb3 36. axb3 Rxg2 37. Rd7+ { Black resigns. } 1-0
+
 `
 
-export default `
+let allGames = `
 
 ${myGames}
 
@@ -355,5 +403,13 @@ ${otherGames}
 
 `.split("---").map((pgn) => new Game(pgn))
 
-/*
-*/
+
+let gamesHash = {}
+
+for (let i = 0; i < allGames.length; i++) {
+  let header = allGames[i].header()
+  let title = header.White + " vs " + header.Black + " " + header.Result
+  gamesHash[title] = allGames[i]
+}
+
+export default gamesHash
