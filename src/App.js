@@ -32,31 +32,86 @@ import { Tab, Tabs } from '@mui/material';
 import games from './data/chess-db.js' 
 import spanishParas from './data/spanish-db.js' 
 
-function App() {
-  let [thingIndex, setThingIndex] = React.useState(0)
+class Card{
+  constructor(content, renderer) {
+    if(!content) throw "Content of card is required"
+    this.content = content
+    this.renderer = renderer 
+  }
 
-  let app
-  if (thingIndex == 0) {
-    app = <ChessTrainer games={ games } />
-  } 
-  if (thingIndex == 1) {
-    app = <SpanishTrainer texts={ spanishParas } />
-  } 
+  name() {
+    return this.content.name ? this.content.name() : this.content.substring(0, 10)
+  }
+}
+let chessCards   = games.map((g)=>new Card(g, ChessTrainer))
+let spanishCards = spanishParas.map((p)=>new Card(p, SpanishTrainer))
+
+function App() {
+  let decks = [chessCards, spanishCards]
+  let [deckIndex, setDeckIndex] = React.useState(0)
+  let [cardIndexes, setCardIndexes] = React.useState([0,0])
+  let [beat, setBeat] = React.useState(0)
+  let [rate, setRate] = React.useState(2)
+  const handleChange = (event, newValue) => {
+    setRate(newValue)
+  };
+
+  let cardIndex = cardIndexes[deckIndex]
+
+  console.log(spanishCards)
+
+  let next = () => {
+    let newDi = (deckIndex + 1) % decks.length
+    setDeckIndex(newDi)
+    setCardIndexes((ci) => {
+      let is = [...ci]
+      is[deckIndex] = (is[deckIndex] + 1) % decks[deckIndex].length
+
+      return is  
+    })
+  }
+
+  let restart = () => {
+    setCardIndexes([0,0])
+    setDeckIndex(0)
+    setBeat(0)
+  }
+
+  let onComplete = () => {
+    next()
+  }
+
+  React.useEffect(() => {
+    setBeat(0)
+    let interval = setInterval(() => {
+      setBeat((b) => b + 1)
+    }, rate * 1000)
+
+    return () => clearInterval(interval)
+  }, [cardIndex, rate])
+
+  let currentCard = decks[deckIndex][cardIndex]
+
+  let Renderer = currentCard.renderer
 
   return (
     <Container maxWidth="sm">
       <h1>
-        Welcome to Stephen R. Foster's Chess apps
+        Welcome to Stephen R. Foster's flashcard app
       </h1>
 
-      {app}
+      <Slider value={rate} onChange={handleChange}
+        valueLabelDisplay='off'
+        marks={[{value: 1, label: '1s'}, {value: 2, label: '2s'}, {value: 3, label: '3s'}, {value: 4, label: '4s'}, {value: 5, label: '5s'}, {value: 6, label: '6s'}, {value: 7, label: '7s'}, {value: 8, label: '8s'}, {value: 9, label: '9s'}, {value: 10, label: '10s'}]}
+        min={1}
+        max={10}
+      />
+
+      Deck: { deckIndex } Card: { cardIndex } Beat: { beat }
+      <Button onClick={next}>Next</Button>
+      <Button onClick={restart}>Restart</Button>
+      <Renderer card={currentCard} onComplete={onComplete} beat={ beat}></Renderer>
       
-      <Chessboard id="BasicBoard" customSquare={(squareData, b, c) => {
-        return <div style={{ width: 50, height: 50 }}>{util.icon(squareData.square) }</div>
-      }} />
-
-      <SquareSearch />
-
     </Container>
   );
 }
@@ -64,68 +119,44 @@ function App() {
 
 //TODO: These should not be out here.  Use refs.
 let spanishUtterance = new SpeechSynthesisUtterance()
-let spanishTimeout
-function SpanishTrainer({ texts }) {
-  let [rate, setRate] = React.useState(1)
-  let [selectedText, setSelectedText] = React.useState(0)
-  let [lastTextChange, setLastTextChange] = React.useState()
+function SpanishTrainer({ card, onComplete }) {
 
-  let currentText = texts[Object.keys(texts)[selectedText]]
-
-  let nextText = () => {
-    let keys = Object.keys(texts)
-    let index = keys.indexOf(selectedText)
-    return keys[(index + 1) % keys.length]
-  }
-
-  React.useEffect(() => {
-    //Speak the current one
+  let speak = () => {
     spanishUtterance.lang = 'es-MX'
     spanishUtterance.voice = window.speechSynthesis.getVoices().find((v)=>v.lang.startsWith("es"))
     spanishUtterance.rate = 1
-    spanishUtterance.text = currentText
+    spanishUtterance.text = card.content
     window.speechSynthesis.speak(spanishUtterance)
     spanishUtterance.onend = () => {
-      setLastTextChange(new Date())
-      setSelectedText((s) => { return (s + 1) % Object.keys(texts).length})
+      onComplete()
     }
     console.log("speak", spanishUtterance) 
-  }, [lastTextChange]);
+  }
 
+  React.useEffect(() => {
+    console.log("speaking", card.content)
+    speak()
+  }, [card.content])
 
-  return (texts[Object.keys(texts)[selectedText]])
+  return (card.content)
 }
 
 
 //TODO: These should not be out here.  Use refs.
 let utterance = new SpeechSynthesisUtterance()
-let timeout
-function ChessTrainer({ games }) {
-  let [rate, setRate] = React.useState(2)
-  let [selectedGame, setSelectedGame] = React.useState(Object.keys(games)[0])
-  let [move, setMove] = React.useState(0)
-  let [lastSquareChange, setLastSquareChange] = React.useState()
+function ChessTrainer({ card, onComplete, beat }) {
   let [pictureMode, setPictureMode] = React.useState(false)
 
-  let nextGame = () => {
-    let keys = Object.keys(games)
-    let index = keys.indexOf(selectedGame)
-    return keys[(index + 1) % keys.length]
-  }
-
-  const handleChange = (event, newValue) => {
-    setRate(newValue)
-  };
+  let move = beat
 
   let currentMove
     
   if(pictureMode)
-    currentMove = games[selectedGame].pictureMoveWords()[move]
+    currentMove = card.content.pictureMoveWords()[move]
   else
-    currentMove = games[selectedGame].moves()[move]
+    currentMove = card.content.moves()[move]
 
-
-  React.useEffect(() => {
+  let speak = () => {
     //Speak the current one
     if (move === undefined || currentMove === undefined) return
     utterance.lang = 'en-US'
@@ -137,72 +168,42 @@ function ChessTrainer({ games }) {
       utterance.text = currentMove
     }
     window.speechSynthesis.speak(utterance)
-  }, [lastSquareChange]);
+  }
 
   React.useEffect(() => {
-    //Set a timeout to chang the move
-    if(timeout) clearInterval(timeout)
-    let firstTime = true;
-    timeout = setInterval(() => {
-      if (firstTime) {
-        firstTime = false
-        return
-      }
-      setLastSquareChange(new Date())
-      setMove((s) => {
-        if(s >= games[selectedGame].moves().length) {
-          console.log(games[selectedGame].timesPlayed, games[selectedGame].moves().length ) 
-          if (games[selectedGame].timesPlayed * games[selectedGame].moves().length < 10) {
-            games[selectedGame].timesPlayed++
-          } else {
-            games[selectedGame].timesPlayed = 0 //Gross stateful stuff
-            setSelectedGame(nextGame())
-          }
+    speak()
+  }, [beat])
 
-          return -1
-        } else {
-          return s+1
-        }
-      })
-    }, rate*1000);
-    return () => clearInterval(timeout);
-  }, [rate,selectedGame]);
+  if (move >= card.content.moves().length) {
+    onComplete()  
+    return "Done"
+  }
 
   return (
     <>
-      <p>Auditory Trainer, every {rate} seconds</p>
-      <select value={selectedGame} onChange={(e) => {
-        setSelectedGame(e.target.value)
-        setMove(-1)
-      }}>
-        {Object.keys(games).map(k => <option key={k} value={k}>({ rate * (games[k].moves().length + 2) }s) {k}</option>)}
-      </select>
-
       <p>Current Square: {pictureMode ? util.pictureNotation(move) : currentMove}</p>
-      <Button onClick={ ()=>setMove(-1)}>Restart</Button>
-      <Button onClick={() => { setMove(-1); setSelectedGame(nextGame()) }}>Next</Button>
-      <Slider value={rate} onChange={handleChange}
-        valueLabelDisplay='off'
-        marks={[{value: 1, label: '1s'}, {value: 2, label: '2s'}, {value: 3, label: '3s'}, {value: 4, label: '4s'}, {value: 5, label: '5s'}, {value: 6, label: '6s'}, {value: 7, label: '7s'}, {value: 8, label: '8s'}, {value: 9, label: '9s'}, {value: 10, label: '10s'}]}
-        min={1}
-        max={10}
-      />
       Picture Mode {pictureMode}: <Switch value={pictureMode} onChange={(event) => {
         setPictureMode(event.target.checked)
       }} />
 
-      {games[selectedGame].chess.getComments().find((c) => c.fen == games[selectedGame].fens()[move])?.comment}
+      {card.content.chess.getComments().find((c) => c.fen == card.content.fens()[move])?.comment}
 
       <Chessboard id="LiveBoard"
         boardOrientation={
-          (!selectedGame.includes("player") || selectedGame.startsWith("player")) ? "white" : "black"
+          (!card.content.name().includes("player") || card.content.name().startsWith("player")) ? "white" : "black"
          }
         position={ 
-        games[selectedGame].fens()[move < 0 ? 0 : move]
+        card.content.fens()[move < 0 ? 0 : move]
       }></Chessboard>
 
        
-      <GameDisplay game={games[selectedGame]} move={ move}></GameDisplay>
+      <GameDisplay game={card.content} move={ move}></GameDisplay>
+
+      <Chessboard id="BasicBoard" customSquare={(squareData, b, c) => {
+        return <div style={{ width: 50, height: 50 }}>{util.icon(squareData.square) }</div>
+      }} />
+
+      <SquareSearch />
 
     </>
   )

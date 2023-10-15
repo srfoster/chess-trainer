@@ -404,6 +404,7 @@ ${otherGames}
 `.split("---").map((pgn) => new Game(pgn))
 
 
+/*
 let gamesHash = {}
 
 for (let i = 0; i < allGames.length; i++) {
@@ -411,5 +412,6 @@ for (let i = 0; i < allGames.length; i++) {
   let title = header.White + " vs " + header.Black + " " + header.Result
   gamesHash[title] = allGames[i]
 }
+*/
 
-export default gamesHash
+export default allGames

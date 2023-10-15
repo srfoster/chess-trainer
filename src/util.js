@@ -218,4 +218,11 @@ export class Game {
     header() {
         return this.chess.header()
     }
+
+  name() {
+    let header = this.header()
+    let title = header.White + " vs " + header.Black + " " + header.Result
+    return title
+  }
+
 }
