@@ -391,11 +391,11 @@ let otherGames = `
 
 let allGames = `
 
-${myGames}
+${myPuzzles}
 
 ---
 
-${myPuzzles}
+${myGames}
 
 ---
 

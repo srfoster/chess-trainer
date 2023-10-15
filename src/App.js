@@ -1,17 +1,20 @@
 /*
 TODO:
 
-* Multiplex between different types of trainers, not just chess.
-  - Started a Spanish trainer, but it sucks (no good spanish tts atm) -- Kinda works in chrome.  Doesn't always play on page load
+* Does it work on phone?
 
-* "Playlists" by playtime (e.g. totals to 30 minutes, etc)
+* Multiplex between different types of trainers, not just chess.
+  - Next button not working on Spanish cards (skips 2)
+  - Pause at beginning of each card
+  - How to make certain cards repeat (auto calculate this?)
+
+* Skip button
+* Pause button
+
+* Control playtime (how to find chunks that fit my workout)
+  - How to calculate 
   - Might want to be able to change this dynamically so that the playtime fits my workout...
 
-* Note, playtimes won't be correct for problems that repeat (fewer than 10 moves)
-
-* Need to figure out what the repetition rules are, and whether the should be configurable
-
-* Add a button to start/stop the audio trainer
 
 */
 
@@ -43,42 +46,49 @@ class Card{
     return this.content.name ? this.content.name() : this.content.substring(0, 10)
   }
 }
-let chessCards   = games.map((g)=>new Card(g, ChessTrainer))
-let spanishCards = spanishParas.map((p)=>new Card(p, SpanishTrainer))
+
+let chessCards = games.map((g) => new Card(g, (props) => <ChessTrainer {...props} />))
+let spanishCards = spanishParas.map((p) => new Card(p, (props) => <SpanishTrainer {...props} />))
 
 function App() {
+  console.log("App render")
+
   let decks = [chessCards, spanishCards]
-  let [deckIndex, setDeckIndex] = React.useState(0)
-  let [cardIndexes, setCardIndexes] = React.useState([0,0])
+
+  let [cardIndex, setCardIndex] = React.useState(0)
   let [beat, setBeat] = React.useState(0)
   let [rate, setRate] = React.useState(2)
+
   const handleChange = (event, newValue) => {
     setRate(newValue)
   };
 
-  let cardIndex = cardIndexes[deckIndex]
+  let deckIndex = cardIndex % 2 
 
   let next = () => {
-    setCardIndexes((ci) => {
-      let newDi = (deckIndex + 1) % decks.length
-      setDeckIndex(newDi)
-
-      let is = [...ci]
-      is[deckIndex] = (is[deckIndex] + 1) % decks[deckIndex].length
-
-      return is  
-    })
-  }
-
-  let restart = () => {
-    setCardIndexes([0,0])
-    setDeckIndex(0)
+    speechSynthesis.cancel()
+    setCardIndex(ci => (ci + 1)% decks.reduce((acc, val) => acc + val.length, 0))
     setBeat(0)
   }
 
-  let onComplete = () => {
-    next()
+  let restart = () => {
+    setCardIndex(0)
+    setBeat(0)
   }
+
+  let currentCard = decks[deckIndex][Math.floor(cardIndex/decks.length)%decks[deckIndex].length]
+
+  if(!currentCard)
+    throw "No current card.  Card index: "  + cardIndex + " Card floored: " + Math.floor(cardIndex/decks.length)  +  " Deck index: " + deckIndex + " Decks: " + decks.length
+
+  let onComplete = React.useCallback((card) => {
+    if(card != currentCard) return
+
+    console.log("CARD COMPLETE", card, currentCard)
+    if(!card.completed)
+      next()
+    card.completed = true
+  }, [currentCard])
 
   React.useEffect(() => {
     setBeat(0)
@@ -87,9 +97,8 @@ function App() {
     }, rate * 1000)
 
     return () => clearInterval(interval)
-  }, [cardIndex, rate])
+  }, [rate])
 
-  let currentCard = decks[deckIndex][cardIndex]
 
   let Renderer = currentCard.renderer
 
@@ -109,7 +118,8 @@ function App() {
       Deck: { deckIndex } Card: { cardIndex } Beat: { beat }
       <Button onClick={next}>Next</Button>
       <Button onClick={restart}>Restart</Button>
-      <Renderer card={currentCard} onComplete={onComplete} beat={ beat}></Renderer>
+
+      {Renderer({ card: currentCard, onComplete, beat })}
       
     </Container>
   );
@@ -127,18 +137,31 @@ function SpanishTrainer({ card, onComplete, beat }) {
     spanishUtterance.rate = 1
     spanishUtterance.text = card.content
     window.speechSynthesis.speak(spanishUtterance)
+
+    let called = false //Don't know why but Speech Synthesis seems to be calling this twice
     spanishUtterance.onend = () => {
-      onComplete()
+      if(called) return
+      called = true
+      console.log("Spanish complete", card)
+      onComplete(card)
     }
-    console.log("speak", spanishUtterance) 
   }
 
   React.useEffect(() => {
-    console.log("speaking", card.content)
+    console.log("Spanish speech effect")
     speak()
+    /*
+    return () => {
+      speechSynthesis.cancel() 
+    }
+    */
   }, [])
 
-  return (card.content)
+  return <>
+    <div>
+      {card.content}
+    </div>
+  </>
 }
 
 
@@ -168,16 +191,26 @@ function ChessTrainer({ card, onComplete, beat }) {
       utterance.text = currentMove
     }
     window.speechSynthesis.speak(utterance)
+    let called = false //Don't know why but Speech Synthesis seems to be calling this twice
+    utterance.onend = () => {
+      if(called) return
+      console.log("Chess complete", move, card.content.moves().length)
+      if (move >= card.content.moves().length-1) {
+        console.log("Chess complete", card)
+        onComplete(card)
+      }
+    }
   }
 
   React.useEffect(() => {
     speak()
+    /*
+    return () => {
+      speechSynthesis.cancel() 
+    }
+    */
   }, [beat])
 
-  if (move >= card.content.moves().length) {
-    onComplete()  
-    return "Done"
-  }
 
   return (
     <>
