@@ -1,5 +1,10 @@
 
 export default `
+
+Hola mundo
+
+---
+
 Los dedos del sol alzaron hacia las pequeñas nubes de la mañana – como si la estrella grande quisiera hacer una dominada por el horizon para empezar el día.  Y fuerte era el sol esta época del año.  Caloroso y polvoriento.
 
 ---

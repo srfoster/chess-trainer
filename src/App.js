@@ -58,12 +58,11 @@ function App() {
 
   let cardIndex = cardIndexes[deckIndex]
 
-  console.log(spanishCards)
-
   let next = () => {
-    let newDi = (deckIndex + 1) % decks.length
-    setDeckIndex(newDi)
     setCardIndexes((ci) => {
+      let newDi = (deckIndex + 1) % decks.length
+      setDeckIndex(newDi)
+
       let is = [...ci]
       is[deckIndex] = (is[deckIndex] + 1) % decks[deckIndex].length
 
@@ -119,7 +118,8 @@ function App() {
 
 //TODO: These should not be out here.  Use refs.
 let spanishUtterance = new SpeechSynthesisUtterance()
-function SpanishTrainer({ card, onComplete }) {
+function SpanishTrainer({ card, onComplete, beat }) {
+  console.log("SpanishTrainer", card.content)
 
   let speak = () => {
     spanishUtterance.lang = 'es-MX'
@@ -136,7 +136,7 @@ function SpanishTrainer({ card, onComplete }) {
   React.useEffect(() => {
     console.log("speaking", card.content)
     speak()
-  }, [card.content])
+  }, [])
 
   return (card.content)
 }
@@ -161,7 +161,7 @@ function ChessTrainer({ card, onComplete, beat }) {
     if (move === undefined || currentMove === undefined) return
     utterance.lang = 'en-US'
     utterance.voice = window.speechSynthesis.getVoices()[move % 2 + 1]
-    utterance.rate = pictureMode ? 1 : 2
+    utterance.rate = 2
     if (!pictureMode) {
       utterance.text = util.clarifySounds(currentMove)
     } else {
@@ -264,7 +264,6 @@ function GameDisplay({ game, move }) {
 function MovesDisplay({ move, moves, wrapper }) {
   if (!wrapper) wrapper = (m) => <span>{m}</span>
   return <p>{util.groupInPairs(moves).map((pair, i) => {
-    console.log("Move", move, i)
     return <div style={{ border: i == Math.floor(move/2) ? "1px solid black" : "none"}}>{i + 1}. {wrapper(pair[0])} {wrapper(pair[1])}</div>
   })}</p>
 }
@@ -276,7 +275,6 @@ function SquareSearch() {
   return (<>
     <Chessboard id="StatsBoard" customSquare={(squareData, b, c) => {
       return <div onClick={() => { 
-        console.log(squareData.square)
         setSelectedSquare(squareData.square)
     } }  style={{ width: 50, height: 50 }}>{(util.counts[squareData.square]||[]).length}</div> }} />
     {selectedSquare && util.counts[selectedSquare] && util.counts[selectedSquare].map((s,i) => {
