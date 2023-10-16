@@ -175,7 +175,7 @@ let utterance = new SpeechSynthesisUtterance()
 function ChessTrainer({ card, onComplete, beat }) {
   let [pictureMode, setPictureMode] = React.useState(true)
 
-  let move = beat
+  let move = Math.min(beat, card.content.moves().length - 1)
 
   let currentMove
     
@@ -196,19 +196,21 @@ function ChessTrainer({ card, onComplete, beat }) {
       utterance.text = currentMove
     }
     window.speechSynthesis.speak(utterance)
-    let called = false //Don't know why but Speech Synthesis seems to be calling this twice
     utterance.onend = () => {
-      if(called) return
       console.log("Chess complete", move, card.content.moves().length)
       if (move >= card.content.moves().length-1) {
         console.log("Chess complete", card)
-        onComplete(card)
+        setTimeout(() => {
+          onComplete(card)
+        },2000)
       }
     }
   }
 
   React.useEffect(() => {
-    speak()
+    setTimeout(() => { 
+      speak()
+    }, 1000)
     /*
     return () => {
       speechSynthesis.cancel() 
