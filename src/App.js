@@ -1,12 +1,9 @@
 /*
 TODO:
 
-* Does it work on phone?
-
-* Multiplex between different types of trainers, not just chess.
-  - Next button not working on Spanish cards (skips 2)
-  - Pause at beginning of each card
-  - How to make certain cards repeat (auto calculate this?)
+- Next button not working on Spanish cards (skips 2)
+- Pause at beginning of each card
+- How to make certain cards repeat (auto calculate this?)
 
 * Skip button
 * Pause button
@@ -34,6 +31,14 @@ import { Tab, Tabs } from '@mui/material';
 
 import games from './data/chess-db.js' 
 import spanishParas from './data/spanish-db.js' 
+
+// Create a reference for the Wake Lock.
+let wakeLock = null;
+try {
+  wakeLock = await navigator.wakeLock.request("screen");
+} catch (err) {
+}
+
 
 class Card{
   constructor(content, renderer) {
@@ -168,7 +173,7 @@ function SpanishTrainer({ card, onComplete, beat }) {
 //TODO: These should not be out here.  Use refs.
 let utterance = new SpeechSynthesisUtterance()
 function ChessTrainer({ card, onComplete, beat }) {
-  let [pictureMode, setPictureMode] = React.useState(false)
+  let [pictureMode, setPictureMode] = React.useState(true)
 
   let move = beat
 

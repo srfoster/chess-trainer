@@ -1,11 +1,8 @@
 
-export default `Corvabruja
+export default `
+Corvabruja
 
-En una choza del desierto, en lo profundo de las Terras Baldías, uno podía encontrar a la 'Corvabruja' —una bruja de la que algunos dicen que puede hacer que tus sueños se hagan realidad, y gratis también.  Quizás esta verdad.
-
-Pero el truco (dicen otros) es que la Corvabruja puede intercambiar tus sueños por los suyos.  Con un reputación como eso, la mayoría de las personas no iban a visitarla, pero yo tenía que hacerlo.
-
-Partiendo mucho antes del amanecer, cuando el sol comenzaba su ascenso, yo ya estaba a mitad de camino.  Y cuando estaba directamente en lo alto, llegaba sediento a su choza.
+En una choza del desierto, en lo profundo de las Terras Baldías, uno podía encontrar a la 'Corvabruja' —una bruja de la que algunos dicen que puede hacer que tus sueños se hagan realidad, y gratis también.  Quizás esta verdad.  Pero el truco (dicen otros) es que la Corvabruja puede intercambiar tus sueños por los suyos.  Con un reputación como eso, la mayoría de las personas no iban a visitarla, pero yo tenía que hacerlo.  Partiendo mucho antes del amanecer, cuando el sol comenzaba su ascenso, yo ya estaba a mitad de camino.  Y cuando estaba directamente en lo alto, llegaba sediento a su choza.
 
 En la polvorienta mochila de mi motocicleta llevaba uno de sus libros de hechizos, que había traído para mostrarle que conocía sus trucos y que iba en serio. Debajo, tenía una pistola porque no soy un idiota.  Siempre ten un plan de respaldo.
 
@@ -28,5 +25,5 @@ Algunos decían que la Corvabruja era una anciana, y por la lentitud de esos dis
 
 Después de varios minutos, mi corazón latía con fuerza porque los pasos finalmente estaban lo suficientemente cerca como para que pronto sabría algo que todos los que había conocido solo podían adivinar.  Pero de la oscura abertura emergió una figura encapuchada con una capa negra.  En la oscuridad bajo su capucha, solo vi sombras. 
 
-Detrás de ella, en el monitor de la computadora, el mensaje 'Un momento, por favor' cambió a 'Gracias por su paciencia, por favor tome asiento'.  La figura encapuchada se agachó y rodeó con los brazos una torre de libros, luego movió la mitad de la torre al suelo, creando dos torres más pequeñas aproximadamente del tamaño de un taburete.
+Detrás de ella, en el monitor de la computadora, el mensaje 'Un momento, por favor' cambió a 'Gracias por su paciencia, por favor tome asiento'. Para cuando terminé de leerlo, ella había tomado asiento en un taburete que estaba entre dos pilas de libros. Con una mano que, noté, era suave y sin arrugas, indicó otro taburete.
 `.split(/\n\n+/)
