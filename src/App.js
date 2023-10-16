@@ -1,9 +1,8 @@
 /*
 TODO:
 
-- Next button not working on Spanish cards (skips 2)
-- Pause at beginning of each card
 - How to make certain cards repeat (auto calculate this?)
+- Start where we left off on the next day?  Localstorage?
 
 * Skip button
 * Pause button
@@ -29,16 +28,10 @@ import * as util from './util.js'
 
 import { Tab, Tabs } from '@mui/material';
 
+import { useLocalStorage } from 'usehooks-ts'
+
 import games from './data/chess-db.js' 
 import spanishParas from './data/spanish-db.js' 
-
-// Create a reference for the Wake Lock.
-let wakeLock = null;
-try {
-  wakeLock = await navigator.wakeLock.request("screen");
-} catch (err) {
-}
-
 
 class Card{
   constructor(content, renderer) {
@@ -60,7 +53,7 @@ function App() {
 
   let decks = [chessCards, spanishCards]
 
-  let [cardIndex, setCardIndex] = React.useState(0)
+  let [cardIndex, setCardIndex] = useLocalStorage("cardIndex", 0) //React.useState(0)
   let [beat, setBeat] = React.useState(0)
   let [rate, setRate] = React.useState(2)
 
