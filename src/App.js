@@ -33,6 +33,8 @@ import { useLocalStorage } from 'usehooks-ts'
 import games from './data/chess-db.js' 
 import spanishParas from './data/spanish-db.js' 
 
+import { Deck, Slide, Heading, DefaultTemplate } from 'spectacle';
+
 class Card{
   constructor(content, renderer) {
     if(!content) throw "Content of card is required"
@@ -47,6 +49,7 @@ class Card{
 
 let chessCards = games.map((g) => new Card(g, (props) => <ChessTrainer {...props} />))
 let spanishCards = spanishParas.map((p) => new Card(p, (props) => <SpanishTrainer {...props} />))
+
 
 function App() {
   console.log("App render")
@@ -98,27 +101,30 @@ function App() {
   }, [rate])
 
 
-  let Renderer = currentCard.renderer
+  //let Renderer = currentCard.renderer
 
   return (
     <Container maxWidth="sm">
-      <h1>
-        Welcome to Stephen R. Foster's flashcard app
-      </h1>
+          <Slider value={rate} onChange={handleChange}
+            valueLabelDisplay='off'
+            marks={[{ value: 1, label: '1s' }, { value: 2, label: '2s' }, { value: 3, label: '3s' }, { value: 4, label: '4s' }, { value: 5, label: '5s' }, { value: 6, label: '6s' }, { value: 7, label: '7s' }, { value: 8, label: '8s' }, { value: 9, label: '9s' }, { value: 10, label: '10s' }]}
+            min={1}
+            max={10}
+          />
 
-      <Slider value={rate} onChange={handleChange}
-        valueLabelDisplay='off'
-        marks={[{value: 1, label: '1s'}, {value: 2, label: '2s'}, {value: 3, label: '3s'}, {value: 4, label: '4s'}, {value: 5, label: '5s'}, {value: 6, label: '6s'}, {value: 7, label: '7s'}, {value: 8, label: '8s'}, {value: 9, label: '9s'}, {value: 10, label: '10s'}]}
-        min={1}
-        max={10}
-      />
+          Deck: {deckIndex} Card: {cardIndex} Beat: {beat}
+          <Button onClick={next}>Next</Button>
+          <Button onClick={restart}>Restart</Button>
+      <Deck template={<DefaultTemplate />}>
+        {chessCards.map((c) => {
+          return <Slide>
+            {c.renderer({ card: c, onComplete, beat })}
+          </Slide>
+        })}
 
-      Deck: { deckIndex } Card: { cardIndex } Beat: { beat }
-      <Button onClick={next}>Next</Button>
-      <Button onClick={restart}>Restart</Button>
+      </Deck>
 
-      {Renderer({ card: currentCard, onComplete, beat })}
-      
+
     </Container>
   );
 }
@@ -221,22 +227,25 @@ function ChessTrainer({ card, onComplete, beat }) {
 
       {card.content.chess.getComments().find((c) => c.fen == card.content.fens()[move])?.comment}
 
-      <Chessboard id="LiveBoard"
-        boardOrientation={
-          (!card.content.name().includes("player") || card.content.name().startsWith("player")) ? "white" : "black"
-         }
-        position={ 
-        card.content.fens()[move < 0 ? 0 : move]
-      }></Chessboard>
+      <div style={{ width: 300 }}>
+        <Chessboard id={"LiveBoard" + card.name()}
+          boardOrientation={
+            (!card.content.name().includes("player") || card.content.name().startsWith("player")) ? "white" : "black"
+          }
+          position={
+            card.content.fens()[move < 0 ? 0 : move]
+          }></Chessboard>
+      </div>
 
        
-      <GameDisplay game={card.content} move={ move}></GameDisplay>
+       
+      {/* <GameDisplay game={card.content} move={ move}></GameDisplay>
 
       <Chessboard id="BasicBoard" customSquare={(squareData, b, c) => {
         return <div style={{ width: 50, height: 50 }}>{util.icon(squareData.square) }</div>
       }} />
 
-      <SquareSearch />
+      <SquareSearch /> */}
 
     </>
   )
