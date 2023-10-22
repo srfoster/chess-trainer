@@ -2,15 +2,12 @@
 TODO:
 
 Pivot to using spectacle slideshow
-- Fix visuals 
-- Fix visuals on mobile
-- Make autoplay work, with adjustable speed 
-  - Bug: Need to make it not trigger two speech events, otherwise this will not work
-  - Need to figure out how to trigger the step and do so after the speech synthesis and the chess moves have finished
-  - Can just dispatch a right arrow event with a callback passed into the various trainers
-  - https://chat.openai.com/c/71727236-66e8-4241-85bb-0d6390fdaf33
+- Autoplay
+  - Need to make it not trigger multiple utterance events, is throwing off the nextStep
+  - Rate slider seems not to be working.  Possibly because of the above.
 - Convert spanish cards to slideshow
-- Make audio for chess cards
+- Fix UX
+- Fix UX on mobile
 
 
 
@@ -65,87 +62,59 @@ class Card{
 let chessCards = games.map((g) => new Card(g, (props) => <ChessTrainer {...props} />))
 let spanishCards = spanishParas.map((p) => new Card(p, (props) => <SpanishTrainer {...props} />))
 
+function rightArrow() {
+  var event = new KeyboardEvent('keydown', {
+      key: 'ArrowRight',
+      code: 'ArrowRight', 
+      which: 39, 
+      keyCode: 39,
+      bubbles: true, 
+      cancelable: true 
+  });
+
+  document.dispatchEvent(event);
+}
 
 function App() {
   console.log("App render")
 
   let decks = [chessCards, spanishCards]
 
-  let [cardIndex, setCardIndex] = useLocalStorage("cardIndex", 0) //React.useState(0)
-  let [beat, setBeat] = React.useState(0)
   let [rate, setRate] = React.useState(2)
-
   let [pictureMode, setPictureMode] = React.useState(true)
-
 
   const handleChange = (event, newValue) => {
     setRate(newValue)
   };
 
-  let deckIndex = cardIndex % 2 
-
-  let next = () => {
-    speechSynthesis.cancel()
-    setCardIndex(ci => (ci + 1)% decks.reduce((acc, val) => acc + val.length, 0))
-    setBeat(0)
-  }
-
-  let restart = () => {
-    setCardIndex(0)
-    setBeat(0)
-  }
-
-  let currentCard = decks[deckIndex][Math.floor(cardIndex/decks.length)%decks[deckIndex].length]
-
-  if(!currentCard)
-    throw "No current card.  Card index: "  + cardIndex + " Card floored: " + Math.floor(cardIndex/decks.length)  +  " Deck index: " + deckIndex + " Decks: " + decks.length
-
-  let onComplete = React.useCallback((card) => {
-    if(card != currentCard) return
-
-    console.log("CARD COMPLETE", card, currentCard)
-    if(!card.completed)
-      next()
-    card.completed = true
-  }, [currentCard])
-
-  React.useEffect(() => {
-    setBeat(0)
-    /*
-    let interval = setInterval(() => {
-      setBeat((b) => b + 1)
-    }, rate * 1000)
-
-    return () => clearInterval(interval)
-    */
-  }, [rate])
-
-
-  //let Renderer = currentCard.renderer
+  let nextStep = React.useCallback(() => {
+    setTimeout(rightArrow , rate * 1000)
+  },[rate])
 
   return (
     <Container maxWidth="sm">
-      <Deck template={<DefaultTemplate />}>
-        {chessCards.map((c) => {
-          return <Slide>
-            <Slider value={rate} onChange={handleChange}
-              valueLabelDisplay='off'
-              marks={[{ value: 1, label: '1s' }, { value: 2, label: '2s' }, { value: 3, label: '3s' }, { value: 4, label: '4s' }, { value: 5, label: '5s' }, { value: 6, label: '6s' }, { value: 7, label: '7s' }, { value: 8, label: '8s' }, { value: 9, label: '9s' }, { value: 10, label: '10s' }]}
-              min={1}
-              max={10}
-            />
+      <div style={{ width: "100%", height: 500, position: "relative"}}>
+        <Deck template={<>
+          <DefaultTemplate />
+        </>}>
+          {chessCards.map((c) => {
+            return <Slide id={ c.content.name() }>
+              <Slider value={rate} onChange={handleChange}
+                valueLabelDisplay='off'
+                marks={[{ value: 1, label: '1s' }, { value: 2, label: '2s' }, { value: 3, label: '3s' }, { value: 4, label: '4s' }, { value: 5, label: '5s' }, { value: 6, label: '6s' }, { value: 7, label: '7s' }, { value: 8, label: '8s' }, { value: 9, label: '9s' }, { value: 10, label: '10s' }]}
+                min={1}
+                max={10}
+              />
 
-            Deck: {deckIndex} Card: {cardIndex} Beat: {beat}
-            <Button onClick={next}>Next</Button>
-            <Button onClick={restart}>Restart</Button>
-            Picture Mode {pictureMode}: <Switch value={pictureMode} onChange={(event) => {
-              setPictureMode(event.target.checked)
-            }} />
-            {c.renderer({ card: c, pictureMode: pictureMode, onComplete, beat })}
-          </Slide>
-        })}
+              Picture Mode: <Switch checked={ pictureMode } value={pictureMode} onChange={(event) => {
+                setPictureMode(event.target.checked)
+              }} />
+              {c.renderer({ card: c, onComplete: nextStep, pictureMode: pictureMode /* TODO: Not needed for spanish trainer! */})}
+            </Slide>
+          })}
 
-      </Deck>
+        </Deck>
+      </div>
 
 
     </Container>
@@ -195,20 +164,21 @@ function SpanishTrainer({ card, onComplete, beat }) {
 //TODO: These should not be out here.  Use refs.
 let utterance = new SpeechSynthesisUtterance()
 
-let speak = (say, voiceIndex) => {
+let speak = (say, voiceIndex, onComplete) => {
   //Speak the current one
   utterance.lang = 'en-US'
   utterance.voice = window.speechSynthesis.getVoices()[voiceIndex || 0]
   utterance.rate = 2
   utterance.text = say
+  utterance.onend = () => {
+     onComplete()
+  }
   window.speechSynthesis.speak(utterance)
 }
 
 function ChessTrainer({ card, pictureMode, onComplete, beat }) {
   return (
     <>
-
-
       <Stepper tagName="div" alwaysVisible values={[...Array(card.content.moves().length).keys()]}>
         {(move, step, isActive) => {
           let currentMove
@@ -221,7 +191,10 @@ function ChessTrainer({ card, pictureMode, onComplete, beat }) {
             {card.name()}
             {currentMove}
             {card.content.chess.getComments().find((c) => c.fen == card.content.fens()[move])?.comment}
-            {isActive && <Speak say={pictureMode ? currentMove.join(" ") : currentMove} voiceIndex={move % 2} />}
+            {isActive && <Speak
+              say={pictureMode ? currentMove.join(" ") : util.clarifySounds(currentMove)} voiceIndex={move % 2}
+              onComplete={ onComplete }
+            />}
             <div style={{ width: 300, height: 300, border: "1px solid black" }}>
               {isActive && <Chessboard id={"LiveBoard" + card.name()}
                 boardOrientation={
@@ -248,10 +221,10 @@ function ChessTrainer({ card, pictureMode, onComplete, beat }) {
 }
 
 
-let Speak = ({ say, voiceIndex }) => {
+let Speak = ({ say, voiceIndex, onComplete }) => {
   React.useEffect(() => {
     console.log("Speak", say, voiceIndex)
-    speak(say, voiceIndex)
+    speak(say, voiceIndex, onComplete)
   }, [say])
 
 
