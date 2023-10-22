@@ -1,6 +1,20 @@
 /*
 TODO:
 
+Pivot to using spectacle slideshow
+- Fix visuals 
+- Fix visuals on mobile
+- Make autoplay work, with adjustable speed 
+  - Need to figure out how to trigger the step and do so after the speech synthesis and the chess moves have finished
+  - Can just dispatch a right arrow event with a callback passed into the various trainers
+  - https://chat.openai.com/c/71727236-66e8-4241-85bb-0d6390fdaf33
+- Convert spanish cards to slideshow
+- Make audio for chess cards
+
+
+
+----
+
 - How to make certain cards repeat (auto calculate this?)
 - Start where we left off on the next day?  Localstorage?
 
@@ -33,7 +47,7 @@ import { useLocalStorage } from 'usehooks-ts'
 import games from './data/chess-db.js' 
 import spanishParas from './data/spanish-db.js' 
 
-import { Deck, Slide, Heading, DefaultTemplate } from 'spectacle';
+import { Appear, Deck, Slide, Stepper, Heading, DefaultTemplate, useSteps } from 'spectacle';
 
 class Card{
   constructor(content, renderer) {
@@ -93,11 +107,13 @@ function App() {
 
   React.useEffect(() => {
     setBeat(0)
+    /*
     let interval = setInterval(() => {
       setBeat((b) => b + 1)
     }, rate * 1000)
 
     return () => clearInterval(interval)
+    */
   }, [rate])
 
 
@@ -227,15 +243,21 @@ function ChessTrainer({ card, onComplete, beat }) {
 
       {card.content.chess.getComments().find((c) => c.fen == card.content.fens()[move])?.comment}
 
-      <div style={{ width: 300 }}>
-        <Chessboard id={"LiveBoard" + card.name()}
-          boardOrientation={
-            (!card.content.name().includes("player") || card.content.name().startsWith("player")) ? "white" : "black"
-          }
-          position={
-            card.content.fens()[move < 0 ? 0 : move]
-          }></Chessboard>
-      </div>
+
+
+      <Stepper tagName="div" alwaysVisible values={[...Array(card.content.moves().length).keys()]}>
+        {(move, step, isActive) => <>
+          {card.name()} 
+          {card.content.moves()[move]} 
+          <div style={{ width: 300, height: 300, border: "1px solid black" }}>
+          {isActive && <Chessboard id={"LiveBoard" + card.name()}
+            boardOrientation={
+              (!card.content.name().includes("player") || card.content.name().startsWith("player")) ? "white" : "black"
+            }
+            position={ card.content.fens()[move] }></Chessboard>}
+        </div>
+      </>}
+    </Stepper >
 
        
        
